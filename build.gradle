@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'org.symulacja'
+version '1.0-SNAPSHOT'
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'okno.MojeOkno'
+        )
+    }
+    repositories {
+        mavenCentral()
+    }
+}
+dependencies {
+    implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
