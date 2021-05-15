@@ -66,7 +66,7 @@ public class MojeOkno extends JFrame implements ActionListener {
         tStartKon.setBounds(180,170,30,20);
         add(tStartKon);
 
-        lRozmiaryTytul = new JLabel("Rozmiary planszy(musi byc kwadratowa, wieksza niz 3x3)");
+        lRozmiaryTytul = new JLabel("Rozmiary planszy(musi byc kwadratowa, wieksza niz 6x6)");
         lRozmiaryTytul.setBounds(330, 10, 350, 20);
         add(lRozmiaryTytul);
 
@@ -88,15 +88,15 @@ public class MojeOkno extends JFrame implements ActionListener {
         lKoordynatyTytul.setBounds(330, 110, 160, 20);
         add(lKoordynatyTytul);
 
-        lKordynatyX = new JLabel("Polozenie X:");
-        lKordynatyX.setBounds(350, 140, 70,20);
+        lKordynatyX = new JLabel("Polozenie X (od 1):");
+        lKordynatyX.setBounds(330, 140, 110,20);
         add(lKordynatyX);
         tKoordynatyX = new JTextField("");
         tKoordynatyX.setBounds(440,140,30,20);
         add(tKoordynatyX);
 
-        lKoordynatyY = new JLabel("Polozenie Y:");
-        lKoordynatyY.setBounds(350,170,70,20);
+        lKoordynatyY = new JLabel("Polozenie Y (od 1):");
+        lKoordynatyY.setBounds(330,170,110,20);
         add(lKoordynatyY);
         tKoordynatyY = new JTextField("");
         tKoordynatyY.setBounds(440,170,30,20);
@@ -162,8 +162,8 @@ public class MojeOkno extends JFrame implements ActionListener {
                 konie = Integer.parseInt(tStartKon.getText());
                 x = Integer.parseInt(tPlanszaRozmiarX.getText());
                 y = Integer.parseInt(tPlanszaRozmiarY.getText());
-                kordX = Integer.parseInt(tKoordynatyX.getText());
-                kordY = Integer.parseInt(tKoordynatyY.getText());
+                kordX = Integer.parseInt(tKoordynatyX.getText())-1;
+                kordY = Integer.parseInt(tKoordynatyY.getText())-1;
                 scianyKroliki = Integer.parseInt(tScianyKroliki.getText());
                 scianyOwce = Integer.parseInt(tScianyOwce.getText());
                 scianySwinie = Integer.parseInt(tScianySwinie.getText());
@@ -210,15 +210,5 @@ public class MojeOkno extends JFrame implements ActionListener {
         MojeOkno okno = new MojeOkno();
     }
 
-
-    @Override
-    public int getX() {
-        return x;
-    }
-
-    @Override
-    public int getY() {
-        return y;
-    }
 
 }

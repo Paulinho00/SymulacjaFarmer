@@ -25,7 +25,7 @@ public class Plansza {
      * @exception IllegalArgumentException gdy plansza jest za mala lub nie jest kwadratowa
      */
     public Plansza(int x, int y, Kostka kostka){
-        if(x <= 3 || y <= 3){
+        if(x <= 6 || y <= 6){
             throw new IllegalArgumentException("Zbyt mała plansza");
         }
         if(x != y){

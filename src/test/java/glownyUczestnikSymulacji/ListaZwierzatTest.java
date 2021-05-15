@@ -24,6 +24,10 @@ class ListaZwierzatTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new ListaZwierzat(127,0,0,0,0));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new ListaZwierzat(128,0,0,0,0));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new ListaZwierzat(145,24,2,6,0));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new ListaZwierzat(2,-1,2,6,0));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new ListaZwierzat(-1,-1,2,6,0));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new ListaZwierzat(0,0,2,-2,0));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new ListaZwierzat(0,0,0,0,-1));
     }
 
 }

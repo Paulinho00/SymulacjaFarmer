@@ -28,6 +28,7 @@ public class Kostka {
         scianyKrowy = krowy;
         scianyKonie = konie;
         iloscScian = kroliki + owce + swinie + krowy + konie;
+        if(iloscScian <= 0 || scianyKroliki < 0 || scianyOwce < 0 || scianySwinie < 0 || scianyKonie < 0 || scianyKrowy < 0) throw new IllegalArgumentException("Bledne dane");
     }
 
     /**

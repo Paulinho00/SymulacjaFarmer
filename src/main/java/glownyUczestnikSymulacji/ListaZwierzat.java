@@ -23,6 +23,7 @@ public class ListaZwierzat {
      */
     public ListaZwierzat(int kroliki, int owce, int swinie, int krowy, int konie){
         if(konie >= 2 || krowy >= 4 || swinie >= 11 || owce >= 22 || kroliki >= 127) throw new IllegalArgumentException("Zbyt duże dane: koniec symulacji");
+        if(kroliki < 0 || krowy < 0 || owce < 0 || swinie < 0 || konie < 0) throw new IllegalArgumentException("Dane nie moga byc ujemne");
         iloscKrolikow = kroliki;
         iloscOwiec = owce;
         iloscSwin = swinie;
