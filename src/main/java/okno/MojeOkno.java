@@ -15,16 +15,15 @@ import java.util.Random;
 public class MojeOkno extends JFrame implements ActionListener {
 
     private final JLabel lStartoweTytul, lStartKrolik, lStartOwca, lStartSwinia, lStartKrowa, lStartKon;
-    private final JLabel lRozmiaryTytul, lPlanszaRozmiarX, lPlanszaRozmiarY, lKoordynatyTytul, lKordynatyX, lKoordynatyY, lScianyTytul, lScianyKroliki, lScianyOwce, lScianySwinie, lScianyKrowy, lScianyKonie;
+    private final JLabel lRozmiaryTytul, lPlanszaRozmiar, lKoordynatyTytul, lKordynatyX, lKoordynatyY, lScianyTytul, lScianyKroliki, lScianyOwce, lScianySwinie, lScianyKrowy, lScianyKonie;
     private final JTextField tStartKrolik, tStartOwca, tStartSwinia, tStartKrowa, tStartKon, tScianyKroliki, tScianyOwce, tScianySwinie, tScianyKrowy, tScianyKonie;
-    private final JTextField tPlanszaRozmiarX, tPlanszaRozmiarY, tKoordynatyX, tKoordynatyY;
-    private JButton potwierdz;
+    private final JTextField tPlanszaRozmiar,tKoordynatyX, tKoordynatyY;
+    private final JButton potwierdz;
     private int x,y,kordX,kordY,kroliki,owce,swinie,krowy,konie, scianyKroliki, scianyOwce, scianyKonie, scianySwinie, scianyKrowy;
     public MojeOkno(){
         setSize(1000,300);
         setTitle("Symulacja Farmer");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
         setLayout(null);
 
         lStartoweTytul = new JLabel("Startowe stany konta");
@@ -67,39 +66,33 @@ public class MojeOkno extends JFrame implements ActionListener {
         add(tStartKon);
 
         lRozmiaryTytul = new JLabel("Rozmiary planszy(musi byc kwadratowa, wieksza niz 6x6)");
-        lRozmiaryTytul.setBounds(330, 10, 350, 20);
+        lRozmiaryTytul.setBounds(280, 10, 350, 20);
         add(lRozmiaryTytul);
 
-        lPlanszaRozmiarX = new JLabel("Szerokosc planszy (X):");
-        lPlanszaRozmiarX.setBounds(300, 50,140,20);
-        add(lPlanszaRozmiarX);
-        tPlanszaRozmiarX = new JTextField("");
-        tPlanszaRozmiarX.setBounds(440, 50, 30, 20);
-        add(tPlanszaRozmiarX);
+        lPlanszaRozmiar = new JLabel("Szerokosc/Dlugosc planszy:");
+        lPlanszaRozmiar.setBounds(320, 50,160,20);
+        add(lPlanszaRozmiar);
+        tPlanszaRozmiar= new JTextField("");
+        tPlanszaRozmiar.setBounds(490, 50, 30, 20);
+        add(tPlanszaRozmiar);
 
-        lPlanszaRozmiarY = new JLabel("Dlugosc planszy (Y):");
-        lPlanszaRozmiarY.setBounds(316,80,140,20);
-        add(lPlanszaRozmiarY);
-        tPlanszaRozmiarY = new JTextField("");
-        tPlanszaRozmiarY.setBounds(440,80,30,20);
-        add(tPlanszaRozmiarY);
 
         lKoordynatyTytul = new JLabel("Startowe polozenie gracza");
-        lKoordynatyTytul.setBounds(330, 110, 160, 20);
+        lKoordynatyTytul.setBounds(330, 90, 160, 20);
         add(lKoordynatyTytul);
 
         lKordynatyX = new JLabel("Polozenie X (od 1):");
-        lKordynatyX.setBounds(330, 140, 110,20);
+        lKordynatyX.setBounds(370, 120, 140,20);
         add(lKordynatyX);
         tKoordynatyX = new JTextField("");
-        tKoordynatyX.setBounds(440,140,30,20);
+        tKoordynatyX.setBounds(490,120,30,20);
         add(tKoordynatyX);
 
         lKoordynatyY = new JLabel("Polozenie Y (od 1):");
-        lKoordynatyY.setBounds(330,170,110,20);
+        lKoordynatyY.setBounds(370,150,110,20);
         add(lKoordynatyY);
         tKoordynatyY = new JTextField("");
-        tKoordynatyY.setBounds(440,170,30,20);
+        tKoordynatyY.setBounds(490,150,30,20);
         add(tKoordynatyY);
 
         lScianyTytul = new JLabel("Sciany wirtualnej kostki");
@@ -160,8 +153,8 @@ public class MojeOkno extends JFrame implements ActionListener {
                 swinie = Integer.parseInt(tStartSwinia.getText());
                 krowy = Integer.parseInt(tStartKrowa.getText());
                 konie = Integer.parseInt(tStartKon.getText());
-                x = Integer.parseInt(tPlanszaRozmiarX.getText());
-                y = Integer.parseInt(tPlanszaRozmiarY.getText());
+                x = Integer.parseInt(tPlanszaRozmiar.getText());
+                y = Integer.parseInt(tPlanszaRozmiar.getText());
                 kordX = Integer.parseInt(tKoordynatyX.getText())-1;
                 kordY = Integer.parseInt(tKoordynatyY.getText())-1;
                 scianyKroliki = Integer.parseInt(tScianyKroliki.getText());
@@ -199,7 +192,6 @@ public class MojeOkno extends JFrame implements ActionListener {
                         gracz.getHandler().setCzySpotkalLisa(false);
                     } while (gracz.czyKoniec() < 127);
                     zapis.zamnkniecie();
-                    System.out.println("zamknal");
                     JOptionPane.showMessageDialog(null,"Symulacja zakonczona sukcesem po "+gracz.getIloscRuchow()+" ruchach.");
                 } catch(NumberFormatException f){JOptionPane.showMessageDialog(null,"Bledne dane", "Bledne dane", JOptionPane.ERROR_MESSAGE);}
                 catch(IllegalArgumentException z)  {JOptionPane.showMessageDialog(null,"Bledne dane", "Bledne dane",JOptionPane.ERROR_MESSAGE);}
@@ -208,6 +200,7 @@ public class MojeOkno extends JFrame implements ActionListener {
 
     public static void main(String[] args){
         MojeOkno okno = new MojeOkno();
+        okno.setVisible(true);
     }
 
 
