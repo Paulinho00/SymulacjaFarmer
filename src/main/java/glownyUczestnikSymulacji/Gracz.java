@@ -26,16 +26,17 @@ public class Gracz implements postac.Postac {
      * @param krowy startowa liczba krow na koncie
      * @param konie startowa liczba koni na koncie
      * @param plansza referencja do planszy na ktorej znajduje sie gracz
-     * @exception IllegalArgumentException gdy podane koordynaty sa bledne
+     * @exception IllegalArgumentException gdy podane koordynaty sa bledne lub startowe stany konta za duze
      */
     public Gracz(int x, int y, int kroliki, int owce, int swinie, int krowy, int konie, Plansza plansza) {
         if(x < 0 ||  y < 0 || y >= plansza.getRozmiarY() || x >= plansza.getRozmiarX()){
-            throw new IllegalArgumentException("Błędne koordynaty");
+            throw new IllegalArgumentException("Bledne koordynaty");
         }
         koordynatX = x;
         koordynatY = y;
         iloscRuchow = 0;
         stanKonta = new ListaZwierzat(kroliki, owce, swinie, krowy, konie);
+        if(czyKoniec()){throw new IllegalArgumentException("Zbyt duze dane startowe");}
         this.plansza = plansza;
         handler = new WykonujacyInterakcje(this);
         plansza.setPola(x,y,this);
@@ -169,12 +170,12 @@ public class Gracz implements postac.Postac {
             if(zwierze.equals("Kon")) stanKonta.setIloscKoni(doIlu);
         }
 
-        public int czyKoniec(){
+        public boolean czyKoniec(){
             int krowy = (stanKonta.getIloscKoni()*Przeliczniki.getKrowyZaKonie())+ stanKonta.getIloscKrow();
             int swinie = (krowy*Przeliczniki.getSwinieZaKrowy())+ stanKonta.getIloscSwin();
             int owce = (swinie*Przeliczniki.getOwceZaSwinie())+ stanKonta.getIloscOwiec();
             int kroliki = (owce*Przeliczniki.getKrolikiZaOwce())+ stanKonta.getIloscKrolikow();
-            return kroliki;
+            return kroliki >=127;
 
         }
     /**

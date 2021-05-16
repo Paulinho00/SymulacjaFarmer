@@ -190,11 +190,11 @@ public class MojeOkno extends JFrame implements ActionListener {
                         zapis.dodajLinie();
                         gracz.getHandler().setCzySpotkalWilka(false);
                         gracz.getHandler().setCzySpotkalLisa(false);
-                    } while (gracz.czyKoniec() < 127);
+                    } while (!gracz.czyKoniec());
                     zapis.zamnkniecie();
                     JOptionPane.showMessageDialog(null,"Symulacja zakonczona sukcesem po "+gracz.getIloscRuchow()+" ruchach.");
-                } catch(NumberFormatException f){JOptionPane.showMessageDialog(null,"Bledne dane", "Bledne dane", JOptionPane.ERROR_MESSAGE);}
-                catch(IllegalArgumentException z)  {JOptionPane.showMessageDialog(null,"Bledne dane", "Bledne dane",JOptionPane.ERROR_MESSAGE);}
+                } catch(NumberFormatException f){JOptionPane.showMessageDialog(null,"Bledne dane. Sprobuj jeszcze raz", "Bledne dane", JOptionPane.ERROR_MESSAGE);}
+                catch(IllegalArgumentException z)  {JOptionPane.showMessageDialog(null,"Bledne dane. Sprobuj jeszcze raz", "Bledne dane",JOptionPane.ERROR_MESSAGE);}
         }
         }
 

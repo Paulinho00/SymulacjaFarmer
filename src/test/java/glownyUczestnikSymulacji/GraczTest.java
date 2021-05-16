@@ -194,13 +194,13 @@ class GraczTest {
     @Test
     void PowinienBycKoniec(){
         Gracz gracz = new Gracz(0,0,0,0,0,2,1,plansza);
-        assertTrue(gracz.czyKoniec()>=127);
+        assertTrue(gracz.czyKoniec());
     }
 
     @Test
     void NiePowinienBycKoniec(){
         Gracz gracz = new Gracz(0,0,2,0,0,0,1,plansza);
-        assertFalse(gracz.czyKoniec()>=127);
+        assertFalse(gracz.czyKoniec());
     }
 
 }
