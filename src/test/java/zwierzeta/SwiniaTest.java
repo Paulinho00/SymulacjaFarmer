@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SwiniaTest {
     Kostka kostka = new Kostka(1,1,1,1,1);
-    Plansza plansza = new Plansza(4,4,kostka);
-    Gracz gracz = new Gracz(2,2,1,1,1,1,1,plansza);
+    Plansza plansza = new Plansza(7,7,kostka);
+    Gracz gracz = new Gracz(2,2,1,0,0,1,1,plansza);
     Swinia swinia = new Swinia(0,0,plansza);
 
     @Test

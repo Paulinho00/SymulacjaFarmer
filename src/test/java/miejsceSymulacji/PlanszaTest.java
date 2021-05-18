@@ -13,7 +13,7 @@ class PlanszaTest {
 
     @Test
     void PowinnoUtworzyc() {
-        Plansza plansza = new Plansza(5,5,kostka);
+        Plansza plansza = new Plansza(7,7,kostka);
     }
 
     @Test
@@ -27,7 +27,7 @@ class PlanszaTest {
 
     @Test
     void PowinienZwrocicCzyZajete(){
-        Plansza plansza = new Plansza(4,4, kostka);
+        Plansza plansza = new Plansza(7,7, kostka);
         Gracz gracz = new Gracz(0,0,0,0,0,0,0,plansza);
         assertTrue(plansza.czyZajete(0,0));
         assertFalse(plansza.czyZajete(1,1));
@@ -35,14 +35,14 @@ class PlanszaTest {
 
     @Test
     void PowinienUzupelnic() {
-        Plansza plansza = new Plansza(4, 4, kostka);
+        Plansza plansza = new Plansza(7, 7, kostka);
         Gracz gracz = new Gracz(0, 0, 0, 0, 0, 0, 0, plansza);
         new Lis(1, 1, plansza, gracz.getHandler());
         new Wilk(2, 2, plansza, gracz.getHandler());
         plansza.uzupelnienie();
         int licznik = 0;
-        for (int x = 0; x < 4; x++) {
-            for (int y = 0; y < 4; y++) {
+        for (int x = 0; x < 7; x++) {
+            for (int y = 0; y < 7; y++) {
                 if (plansza.czyZajete(x, y)) licznik++;
             }
         }
@@ -51,7 +51,7 @@ class PlanszaTest {
 
     @Test
     void PowinienPrzemiescic(){
-        Plansza plansza = new Plansza(4,4,kostka);
+        Plansza plansza = new Plansza(7,7,kostka);
         Krolik krolik = new Krolik(0,0,plansza);
         plansza.setPola(0,0,krolik);
         plansza.przemieszczenie(0,0,1,1);
@@ -62,7 +62,7 @@ class PlanszaTest {
 
     @Test
     void PowinienZwrocicKtoJestNaPolu() {
-        Plansza plansza = new Plansza(4, 4, kostka);
+        Plansza plansza = new Plansza(7, 7, kostka);
         Gracz gracz = new Gracz(0, 0, 0, 0, 0, 0, 0, plansza);
         plansza.setPola(0, 1, new Lis(1, 1, plansza, gracz.getHandler()));
         plansza.setPola(0, 2, new Wilk(2, 2, plansza, gracz.getHandler()));
@@ -83,7 +83,7 @@ class PlanszaTest {
 
     @Test
     void PowinienWyczyscicPole(){
-        Plansza plansza = new Plansza(4, 4, kostka);
+        Plansza plansza = new Plansza(7, 7, kostka);
         new Krolik(1, 0, plansza);
         assertEquals(plansza.getZajetePola(), 1);
         plansza.wyczyscPole(1,0);
@@ -93,7 +93,7 @@ class PlanszaTest {
 
     @Test
     void ZarzadzanieRuchem(){
-        Plansza plansza = new Plansza(4, 4, kostka);
+        Plansza plansza = new Plansza(7, 7, kostka);
         Gracz gracz = new Gracz(0,0,0,0,0,0,0,plansza);
         Wilk wilk = new Wilk(0,1,plansza, gracz.getHandler());
         Lis lis = new Lis(1,0, plansza, gracz.getHandler());

@@ -13,7 +13,7 @@ class ListaZwierzatTest {
 
     @Test
     void PowinnienBycWyjatek() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new ListaZwierzat(0,0,0,0,2));
+
         Assertions.assertThrows(IllegalArgumentException.class, () -> new ListaZwierzat(0,0,0,0,3));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new ListaZwierzat(0,0,0,4,0));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new ListaZwierzat(0,0,0,5,0));

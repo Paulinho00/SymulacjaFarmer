@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class GraczTest {
 
     Kostka kostka = new Kostka(5,4,3,2,1);
-    Plansza plansza = new Plansza(5, 5, kostka);
+    Plansza plansza = new Plansza(7, 7, kostka);
 
     @Test
     void PowinienStworzyc(){
-        Gracz gracz = new Gracz(2, 3, 1, 1, 4, 2, 0, plansza);
+        Gracz gracz = new Gracz(2, 3, 1, 1, 0, 2, 0, plansza);
     }
 
     @Test
@@ -135,7 +135,7 @@ class GraczTest {
 
     @Test
     void RuchNaWilka(){
-        Gracz gracz = new Gracz(0,0,6,7,6,1,0,plansza);
+        Gracz gracz = new Gracz(0,0,6,2,1,1,0,plansza);
         plansza.setPola(0,1, new Wilk(0,1,plansza, gracz.getHandler()));
         plansza.setPola(1,0, new Wilk(1,0,plansza, gracz.getHandler()));
         int stareX = gracz.getKoordynatX();
@@ -151,7 +151,7 @@ class GraczTest {
 
     @Test
     void RuchNaLisa(){
-        Gracz gracz = new Gracz(0,0,6,7,6,1,1,plansza);
+        Gracz gracz = new Gracz(0,0,6,0,1,1,1,plansza);
         plansza.setPola(0,1, new Lis(0,1,plansza, gracz.getHandler()));
         plansza.setPola(1,0, new Lis(1,0,plansza, gracz.getHandler()));
         int stareX = gracz.getKoordynatX();
@@ -162,23 +162,23 @@ class GraczTest {
         assertTrue(nowyX == stareX && nowyY == stareY);
         assertTrue(plansza.czyZajete(nowyX, nowyY));
         assertTrue(plansza.czyZajete(stareX, stareY));
-        assertTrue(gracz.getStanKonta().getIloscKrolikow() == 0 && gracz.getStanKonta().getIloscOwiec() != 0 && gracz.getStanKonta().getIloscSwin()!=0 && gracz.getStanKonta().getIloscKrow()!=0 && gracz.getStanKonta().getIloscKoni() != 0);
+        assertTrue(gracz.getStanKonta().getIloscKrolikow() == 0 && gracz.getStanKonta().getIloscOwiec() == 0 && gracz.getStanKonta().getIloscSwin()!=0 && gracz.getStanKonta().getIloscKrow()!=0 && gracz.getStanKonta().getIloscKoni() != 0);
     }
 
     @Test
     void WymianaZwierzat(){
-        Gracz gracz = new Gracz(0,0,126,1,0,2,0,plansza);
+        Gracz gracz = new Gracz(0,0,120,0,0,0,0,plansza);
         gracz.wymiana();
         assertEquals(gracz.getStanKonta().getIloscKrolikow(), 0);
         assertEquals(gracz.getStanKonta().getIloscOwiec(), 0);
-        assertEquals(gracz.getStanKonta().getIloscSwin(), 2);
+        assertEquals(gracz.getStanKonta().getIloscSwin(), 1);
         assertEquals(gracz.getStanKonta().getIloscKrow(), 1);
-        assertEquals(gracz.getStanKonta().getIloscKoni(), 2);
+        assertEquals(gracz.getStanKonta().getIloscKoni(), 1);
     }
 
     @Test
     void PowinienZmnienicKonto(){
-        Gracz gracz = new Gracz(0,0,126,1,0,2,0,plansza);
+        Gracz gracz = new Gracz(0,0,118,1,0,0,0,plansza);
         gracz.zmnienIloscKonto("Krolik", 0);
         gracz.zmnienIloscKonto("Swinia", 1);
         gracz.zmnienIloscKonto("Krowa", 2);
@@ -193,8 +193,9 @@ class GraczTest {
 
     @Test
     void PowinienBycKoniec(){
-        Gracz gracz = new Gracz(0,0,0,0,0,2,1,plansza);
-        assertTrue(gracz.czyKoniec());
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Gracz(0,0,0,0,0,2,1,plansza));
+        ;
+
     }
 
     @Test
