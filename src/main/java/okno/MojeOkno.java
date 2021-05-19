@@ -19,6 +19,7 @@ public class MojeOkno extends JFrame implements ActionListener {
     private final JTextField tPlanszaRozmiar,tStartKord3X, tStartKord3Y;
     private final JButton potwierdz;
     private int x,y,kord1X,kord1Y,kord2X, kord2Y, kord3X, kord3Y,scianyKroliki, scianyOwce, scianyKonie, scianySwinie, scianyKrowy;
+
     public MojeOkno(){
         setSize(1000,300);
         setTitle("Symulacja Farmer");
@@ -135,7 +136,6 @@ public class MojeOkno extends JFrame implements ActionListener {
         add(potwierdz);
         potwierdz.addActionListener(this);
 
-
     }
 
 
@@ -153,6 +153,13 @@ public class MojeOkno extends JFrame implements ActionListener {
                     plansza.umieszczenieDrapieznikow();
                     Zapisywator zapis = new Zapisywator();
                     zapis.naglowek();
+                    JFrame planszaRamka = new JFrame("Plansza");
+                    planszaRamka.setSize(4000,4000);
+                    planszaRamka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    planszaRamka.setVisible(true);
+                    PlanszaGUI planszaGUI = new PlanszaGUI(plansza);
+                    planszaRamka.add(planszaGUI);
+
                     Random losowanie = new Random();
                     plansza.uzupelnienie();
                     for(int i = 0; i < 10; i++){
@@ -167,6 +174,7 @@ public class MojeOkno extends JFrame implements ActionListener {
                         plansza.uzupelnienie();
                         zapis.KolejnaTura(gracz1,gracz2,gracz3);
                         resetGraczy(gracz1,gracz2,gracz3);
+                        planszaGUI.aktualizacjaGUI();
                     }
                     zapis.zamnkniecie();
                     JOptionPane.showMessageDialog(null,"Symulacja zakonczona sukcesem. Wygral" + ktoWygral(gracz1,gracz2,gracz3)+".");
@@ -178,6 +186,8 @@ public class MojeOkno extends JFrame implements ActionListener {
     public static void main(String[] args){
         MojeOkno okno = new MojeOkno();
         okno.setVisible(true);
+
+
     }
 
     private void Parsowanie(){
