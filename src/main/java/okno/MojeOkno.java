@@ -4,8 +4,7 @@ import glownyUczestnikSymulacji.Gracz;
 import miejsceSymulacji.Kostka;
 import miejsceSymulacji.Plansza;
 import obslugaPlikow.Zapisywator;
-import zwierzeta.Lis;
-import zwierzeta.Wilk;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,56 +13,53 @@ import java.util.Random;
 
 public class MojeOkno extends JFrame implements ActionListener {
 
-    private final JLabel lStartoweTytul, lStartKrolik, lStartOwca, lStartSwinia, lStartKrowa, lStartKon;
-    private final JLabel lRozmiaryTytul, lPlanszaRozmiar, lKoordynatyTytul, lKordynatyX, lKoordynatyY, lScianyTytul, lScianyKroliki, lScianyOwce, lScianySwinie, lScianyKrowy, lScianyKonie;
-    private final JTextField tStartKrolik, tStartOwca, tStartSwinia, tStartKrowa, tStartKon, tScianyKroliki, tScianyOwce, tScianySwinie, tScianyKrowy, tScianyKonie;
-    private final JTextField tPlanszaRozmiar,tKoordynatyX, tKoordynatyY;
+    private final JLabel lStartoweTytul1, lStartKord1X, lStartKord1Y, lStartoweTytul2, lStartKord2X, lStartKord2Y;
+    private final JLabel lRozmiaryTytul, lPlanszaRozmiar, lKoordynatyTytul, lStartKord3X, lStartKord3Y, lScianyTytul, lScianyKroliki, lScianyOwce, lScianySwinie, lScianyKrowy, lScianyKonie;
+    private final JTextField tStartKord1X, tStartKord1Y, tStartKord2X, tStartKord2Y, tScianyKroliki, tScianyOwce, tScianySwinie, tScianyKrowy, tScianyKonie;
+    private final JTextField tPlanszaRozmiar,tStartKord3X, tStartKord3Y;
     private final JButton potwierdz;
-    private int x,y,kordX,kordY,kroliki,owce,swinie,krowy,konie, scianyKroliki, scianyOwce, scianyKonie, scianySwinie, scianyKrowy;
+    private int x,y,kord1X,kord1Y,kord2X, kord2Y, kord3X, kord3Y,scianyKroliki, scianyOwce, scianyKonie, scianySwinie, scianyKrowy;
     public MojeOkno(){
         setSize(1000,300);
         setTitle("Symulacja Farmer");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
-        lStartoweTytul = new JLabel("Startowe stany konta");
-        lStartoweTytul.setBounds(60,10,160,20);
-        add(lStartoweTytul);
+        lStartoweTytul1 = new JLabel("Startowe polozenie pierwszego gracza");
+        lStartoweTytul1.setBounds(20,10,220,20);
+        add(lStartoweTytul1);
 
-        lStartKrolik = new JLabel("Startowa liczba krolikow:");
-        lStartKrolik.setBounds(20,50,160,20);
-        add(lStartKrolik);
-        tStartKrolik = new JTextField("");
-        tStartKrolik.setBounds(180,50,30,20);
-        add(tStartKrolik);
+        lStartKord1X = new JLabel("Polozenie X (od 1)");
+        lStartKord1X.setBounds(20,40,160,20);
+        add(lStartKord1X);
+        tStartKord1X = new JTextField("");
+        tStartKord1X.setBounds(180,40,30,20);
+        add(tStartKord1X);
 
-        lStartOwca = new JLabel("Startowa liczba owiec:");
-        lStartOwca.setBounds(20,80,160,20);
-        add(lStartOwca);
-        tStartOwca = new JTextField("");
-        tStartOwca.setBounds(180,80,30,20);
-        add(tStartOwca);
+        lStartKord1Y = new JLabel("Polozenie Y (od 1)");
+        lStartKord1Y.setBounds(20,70,160,20);
+        add(lStartKord1Y);
+        tStartKord1Y = new JTextField("");
+        tStartKord1Y.setBounds(180,70,30,20);
+        add(tStartKord1Y);
 
-        lStartSwinia = new JLabel("Startowa liczba swin:");
-        lStartSwinia.setBounds(20,110,160,20);
-        add(lStartSwinia);
-        tStartSwinia = new JTextField("");
-        tStartSwinia.setBounds(180,110,30,20);
-        add(tStartSwinia);
+        lStartoweTytul2 = new JLabel("Startowa  polozenie drugiego gracza");
+        lStartoweTytul2.setBounds(20,100,220,20);
+        add(lStartoweTytul2);
 
-        lStartKrowa = new JLabel("Startowa liczba krow:");
-        lStartKrowa.setBounds(20,140,160,20);
-        add(lStartKrowa);
-        tStartKrowa = new JTextField("");
-        tStartKrowa.setBounds(180,140,30,20);
-        add(tStartKrowa);
+        lStartKord2X = new JLabel("Polozenie X (od 1)");
+        lStartKord2X.setBounds(20,130,160,20);
+        add(lStartKord2X);
+        tStartKord2X = new JTextField("");
+        tStartKord2X.setBounds(180,130,30,20);
+        add(tStartKord2X);
 
-        lStartKon = new JLabel("Startowa liczba koni:");
-        lStartKon.setBounds(20,170,160,20);
-        add(lStartKon);
-        tStartKon = new JTextField("");
-        tStartKon.setBounds(180,170,30,20);
-        add(tStartKon);
+        lStartKord2Y = new JLabel("Polozenie Y (od 1)");
+        lStartKord2Y.setBounds(20,160,160,20);
+        add(lStartKord2Y);
+        tStartKord2Y = new JTextField("");
+        tStartKord2Y.setBounds(180,160,30,20);
+        add(tStartKord2Y);
 
         lRozmiaryTytul = new JLabel("Rozmiary planszy(musi byc kwadratowa, wieksza niz 6x6)");
         lRozmiaryTytul.setBounds(280, 10, 350, 20);
@@ -77,23 +73,23 @@ public class MojeOkno extends JFrame implements ActionListener {
         add(tPlanszaRozmiar);
 
 
-        lKoordynatyTytul = new JLabel("Startowe polozenie gracza");
-        lKoordynatyTytul.setBounds(330, 90, 160, 20);
+        lKoordynatyTytul = new JLabel("Startowe polozenie trzeciego gracza");
+        lKoordynatyTytul.setBounds(330, 100, 220, 20);
         add(lKoordynatyTytul);
 
-        lKordynatyX = new JLabel("Polozenie X (od 1):");
-        lKordynatyX.setBounds(370, 120, 140,20);
-        add(lKordynatyX);
-        tKoordynatyX = new JTextField("");
-        tKoordynatyX.setBounds(490,120,30,20);
-        add(tKoordynatyX);
+        lStartKord3X = new JLabel("Polozenie X (od 1):");
+        lStartKord3X.setBounds(370, 130, 140,20);
+        add(lStartKord3X);
+        tStartKord3X = new JTextField("");
+        tStartKord3X.setBounds(490,130,30,20);
+        add(tStartKord3X);
 
-        lKoordynatyY = new JLabel("Polozenie Y (od 1):");
-        lKoordynatyY.setBounds(370,150,110,20);
-        add(lKoordynatyY);
-        tKoordynatyY = new JTextField("");
-        tKoordynatyY.setBounds(490,150,30,20);
-        add(tKoordynatyY);
+        lStartKord3Y = new JLabel("Polozenie Y (od 1):");
+        lStartKord3Y.setBounds(370,160,110,20);
+        add(lStartKord3Y);
+        tStartKord3Y = new JTextField("");
+        tStartKord3Y.setBounds(490,160,30,20);
+        add(tStartKord3Y);
 
         lScianyTytul = new JLabel("Sciany wirtualnej kostki");
         lScianyTytul.setBounds(720, 10, 140, 20);
@@ -148,51 +144,32 @@ public class MojeOkno extends JFrame implements ActionListener {
         Object source = e.getSource();
         if(source == potwierdz) {
             try{
-                kroliki = Integer.parseInt(tStartKrolik.getText());
-                owce = Integer.parseInt(tStartOwca.getText());
-                swinie = Integer.parseInt(tStartSwinia.getText());
-                krowy = Integer.parseInt(tStartKrowa.getText());
-                konie = Integer.parseInt(tStartKon.getText());
-                x = Integer.parseInt(tPlanszaRozmiar.getText());
-                y = Integer.parseInt(tPlanszaRozmiar.getText());
-                kordX = Integer.parseInt(tKoordynatyX.getText())-1;
-                kordY = Integer.parseInt(tKoordynatyY.getText())-1;
-                scianyKroliki = Integer.parseInt(tScianyKroliki.getText());
-                scianyOwce = Integer.parseInt(tScianyOwce.getText());
-                scianySwinie = Integer.parseInt(tScianySwinie.getText());
-                scianyKrowy = Integer.parseInt(tScianyKrowy.getText());
-                scianyKonie = Integer.parseInt(tScianyKonie.getText());
+                    Parsowanie();
                     Kostka kostka = new Kostka(scianyKroliki, scianyOwce, scianySwinie, scianyKrowy, scianyKonie);
                     Plansza plansza = new Plansza(x, y, kostka);
-                    Gracz gracz = new Gracz(kordX, kordY, kroliki, owce, swinie, krowy, konie, plansza);
-                    Zapisywator zapis = new Zapisywator(gracz);
+                    Gracz gracz1 = new Gracz(kord1X, kord1Y,plansza);
+                    Gracz gracz2 = new Gracz(kord2X, kord2Y, plansza);
+                    Gracz gracz3 = new Gracz(kord3X, kord3Y, plansza);
+                    plansza.umieszczenieDrapieznikow();
+                    Zapisywator zapis = new Zapisywator();
                     zapis.naglowek();
                     Random losowanie = new Random();
-                    do {
-                        x = losowanie.nextInt(plansza.getRozmiarX());
-                        y = losowanie.nextInt(plansza.getRozmiarY());
-                    } while (plansza.czyZajete(x, y));
-                    Wilk wilk = new Wilk(x, y, plansza, gracz.getHandler());
-                    do {
-                        x = losowanie.nextInt(plansza.getRozmiarX());
-                        y = losowanie.nextInt(plansza.getRozmiarY());
-                    } while (plansza.czyZajete(x, y));
-                    Lis lis = new Lis(x, y, plansza, gracz.getHandler());
                     plansza.uzupelnienie();
-                    do {
-                        gracz.ruch();
-                        wilk.ruch();
-                        lis.ruch();
+                    for(int i = 0; i < 10; i++){
+                        gracz1.ruch();
+                        gracz2.ruch();
+                        gracz3.ruch();
                         plansza.RuchyNaPlanszy();
                         plansza.ResetZwierzat();
-                        gracz.wymiana();
+                        gracz1.wymiana();
+                        gracz2.wymiana();
+                        gracz3.wymiana();
                         plansza.uzupelnienie();
-                        zapis.dodajLinie();
-                        gracz.getHandler().setCzySpotkalWilka(false);
-                        gracz.getHandler().setCzySpotkalLisa(false);
-                    } while (!gracz.czyKoniec());
+                        zapis.KolejnaTura(gracz1,gracz2,gracz3);
+                        resetGraczy(gracz1,gracz2,gracz3);
+                    }
                     zapis.zamnkniecie();
-                    JOptionPane.showMessageDialog(null,"Symulacja zakonczona sukcesem po "+gracz.getIloscRuchow()+" ruchach.");
+                    JOptionPane.showMessageDialog(null,"Symulacja zakonczona sukcesem. Wygral" + ktoWygral(gracz1,gracz2,gracz3)+".");
                 } catch(NumberFormatException f){JOptionPane.showMessageDialog(null,"Bledne dane. Sprobuj jeszcze raz", "Bledne dane", JOptionPane.ERROR_MESSAGE);}
                 catch(IllegalArgumentException z)  {JOptionPane.showMessageDialog(null,"Bledne dane. Sprobuj jeszcze raz", "Bledne dane",JOptionPane.ERROR_MESSAGE);}
         }
@@ -203,5 +180,40 @@ public class MojeOkno extends JFrame implements ActionListener {
         okno.setVisible(true);
     }
 
+    private void Parsowanie(){
+        x = Integer.parseInt(tPlanszaRozmiar.getText());
+        y = Integer.parseInt(tPlanszaRozmiar.getText());
+        kord1X = Integer.parseInt(tStartKord1X.getText())-1;
+        kord1Y = Integer.parseInt(tStartKord1Y.getText())-1;
+        kord2X = Integer.parseInt(tStartKord2X.getText())-1;
+        kord2Y = Integer.parseInt(tStartKord2Y.getText())-1;
+        kord3X = Integer.parseInt(tStartKord3X.getText())-1;
+        kord3Y = Integer.parseInt(tStartKord3Y.getText())-1;
+        scianyKroliki = Integer.parseInt(tScianyKroliki.getText());
+        scianyOwce = Integer.parseInt(tScianyOwce.getText());
+        scianySwinie = Integer.parseInt(tScianySwinie.getText());
+        scianyKrowy = Integer.parseInt(tScianyKrowy.getText());
+        scianyKonie = Integer.parseInt(tScianyKonie.getText());
+    }
+    private void resetGraczy(Gracz gracz1, Gracz gracz2, Gracz gracz3){
+        gracz1.getHandler().setCzySpotkalLisa(false);
+        gracz1.getHandler().setCzySpotkalWilka(false);
+        gracz1.getHandler().setCzyZostalOkradziony(false);
+        gracz2.getHandler().setCzySpotkalLisa(false);
+        gracz2.getHandler().setCzySpotkalWilka(false);
+        gracz2.getHandler().setCzyZostalOkradziony(false);
+        gracz3.getHandler().setCzySpotkalLisa(false);
+        gracz3.getHandler().setCzySpotkalWilka(false);
+        gracz3.getHandler().setCzyZostalOkradziony(false);
+    }
+
+    private String ktoWygral(Gracz gracz1, Gracz gracz2, Gracz gracz3){
+        String kto = "";
+       int max = Math.max(gracz1.wartoscKonta(), Math.max(gracz2.wartoscKonta(),gracz3.wartoscKonta()));
+      if(max == gracz1.wartoscKonta() ) kto = kto + " " + "pierwszy gracz";
+      if(max == gracz2.wartoscKonta()) kto = kto + " " + "drugi gracz";
+      if(max == gracz3.wartoscKonta()) kto = kto+ " " + "trzeci gracz";
+      return kto;
+    }
 
 }

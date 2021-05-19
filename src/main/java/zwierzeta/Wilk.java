@@ -1,4 +1,5 @@
 package zwierzeta;
+import glownyUczestnikSymulacji.Gracz;
 import miejsceSymulacji.Plansza;
 import wykonujacyInterakcje.WykonujacyInterakcje;
 
@@ -12,20 +13,19 @@ public class Wilk implements postac.Postac {
     private int koordynatX;
     private int koordynatY;
     private final Plansza plansza;
-    private final WykonujacyInterakcje handler;
+    private boolean wykonalRuch;
 
     /**
      *
      * @param x startowy koordynat X na planszy
      * @param y startowy koordynat Y na planszy
      * @param plansza obiekt planszy na ktorym bedzie sie poruszac
-     * @param handler referencje do obiektu wykonujacego interakcje z graczem
      */
-    public Wilk(int x, int y, Plansza plansza, WykonujacyInterakcje handler ){
+    public Wilk(int x, int y, Plansza plansza){
         koordynatX = x;
         koordynatY = y;
+        wykonalRuch = false;
         this.plansza = plansza;
-        this.handler = handler;
         plansza.setPola(x,y,this);
     }
 
@@ -52,11 +52,14 @@ public class Wilk implements postac.Postac {
             plansza.przemieszczenie(koordynatX, koordynatY, koordynatX + ruchX, koordynatY + ruchY);
             koordynatX += ruchX;
             koordynatY += ruchY;
+            wykonalRuch = true;
         } else {
             String Kto = plansza.ktoJest(koordynatX + ruchX, koordynatY + ruchY);
 
             if(Kto.equals("Gracz")) {
-                handler.wyczyszczenieKontaGracza();
+                Gracz gracz = (Gracz) plansza.getPola(koordynatX+ruchX,koordynatY+ruchY);
+                gracz.getHandler().wyczyszczenieKontaGracza();
+                wykonalRuch = true;
                 return;
             }
             if (Kto.equals("Krolik") || Kto.equals("Owca") || Kto.equals("Swinia") || Kto.equals("Krowa") || Kto.equals("Kon")) {
@@ -64,6 +67,7 @@ public class Wilk implements postac.Postac {
                 plansza.przemieszczenie(koordynatX, koordynatY, koordynatX + ruchX, koordynatY + ruchY);
                 koordynatX += ruchX;
                 koordynatY += ruchY;
+                wykonalRuch = true;
             }
 
         }
@@ -85,5 +89,21 @@ public class Wilk implements postac.Postac {
     @Override
     public int getKoordynatY() {
         return koordynatY;
+    }
+
+    /**
+     *
+     * @return czy obiekt wykonal ruch
+     */
+    public boolean isWykonalRuch() {
+        return wykonalRuch;
+    }
+
+    /**
+     *
+     * @param wykonalRuch nowa wartosc pola {@link Wilk#wykonalRuch}
+     */
+    public void setWykonalRuch(boolean wykonalRuch) {
+        this.wykonalRuch = wykonalRuch;
     }
 }

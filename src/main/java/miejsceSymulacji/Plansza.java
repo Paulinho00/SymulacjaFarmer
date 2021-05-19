@@ -171,6 +171,8 @@ public class Plansza {
         Swinia swinia;
         Krowa krowa;
         Kon kon;
+        Lis lis;
+        Wilk wilk;
         for(int i = 0; i < rozmiarX; i++){
             for(int j = 0; j < rozmiarY; j++) {
                 if (czyZajete(i, j)) {
@@ -207,6 +209,18 @@ public class Plansza {
                             kon.ruch();
                         }
                     }
+                    if(kto.equals("Lis")){
+                        lis = (Lis) getPola(i,j);
+                        if(!lis.isWykonalRuch()){
+                            lis.ruch();
+                        }
+                    }
+                    if(kto.equals("Wilk")){
+                        wilk = (Wilk) getPola(i,j);
+                        if(!wilk.isWykonalRuch()){
+                            wilk.ruch();
+                        }
+                    }
                 }
             }
         }
@@ -222,6 +236,8 @@ public class Plansza {
         Swinia swinia;
         Krowa krowa;
         Kon kon;
+        Lis lis;
+        Wilk wilk;
         for(int i = 0; i < rozmiarX; i++){
             for(int j = 0; j < rozmiarY; j++) {
                 if (czyZajete(i, j)) {
@@ -248,10 +264,38 @@ public class Plansza {
                         kon = (Kon) getPola(i, j);
                         kon.setWykonalRuch(false);
                     }
+                    if (kto.equals("Lis")){
+                        lis = (Lis) getPola(i,j);
+                        lis.setWykonalRuch(false);
+                    }
+                    if(kto.equals("Wilk")){
+                        wilk = (Wilk) getPola(i,j);
+                        wilk.setWykonalRuch(false);
+                    }
                 }
             }
 
         }
     }
+
+    /**
+     * Umieszcza Wilka i Lisa na planszy
+     */
+    public void umieszczenieDrapieznikow(){
+        int x,y;
+        Random losowanie = new Random();
+        do {
+            x = losowanie.nextInt(rozmiarX);
+            y = losowanie.nextInt(rozmiarY);
+        } while (czyZajete(x, y));
+        new Wilk(x, y, this);
+        do {
+            x = losowanie.nextInt(rozmiarX);
+            y = losowanie.nextInt(rozmiarY);
+        } while (czyZajete(x, y));
+        new Lis(x, y, this);
+    }
+
+
 
 }

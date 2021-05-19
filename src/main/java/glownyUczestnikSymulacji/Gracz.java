@@ -20,23 +20,17 @@ public class Gracz implements postac.Postac {
      *
      * @param x poczatkowy koordynat X gracza na planszy
      * @param y poczatkowy koordynat Y gracza na planszy
-     * @param kroliki startowa liczba krolikow na koncie
-     * @param owce startowa liczba owiec na koncie
-     * @param swinie startowa liczba swin na koncie
-     * @param krowy startowa liczba krow na koncie
-     * @param konie startowa liczba koni na koncie
      * @param plansza referencja do planszy na ktorej znajduje sie gracz
      * @exception IllegalArgumentException gdy podane koordynaty sa bledne lub startowe stany konta za duze
      */
-    public Gracz(int x, int y, int kroliki, int owce, int swinie, int krowy, int konie, Plansza plansza) {
-        if(x < 0 ||  y < 0 || y >= plansza.getRozmiarY() || x >= plansza.getRozmiarX()){
+    public Gracz(int x, int y, Plansza plansza) {
+        if(x < 0 ||  y < 0 || y >= plansza.getRozmiarY() || x >= plansza.getRozmiarX() || plansza.czyZajete(x,y)){
             throw new IllegalArgumentException("Bledne koordynaty");
         }
         koordynatX = x;
         koordynatY = y;
         iloscRuchow = 0;
-        stanKonta = new ListaZwierzat(kroliki, owce, swinie, krowy, konie);
-        if(czyKoniec()){throw new IllegalArgumentException("Zbyt duze dane startowe");}
+        stanKonta = new ListaZwierzat(0,0,0,0,0);
         this.plansza = plansza;
         handler = new WykonujacyInterakcje(this);
         plansza.setPola(x,y,this);
@@ -69,6 +63,10 @@ public class Gracz implements postac.Postac {
                 koordynatX += ruchX;
                 koordynatY += ruchY;
                 iloscRuchow++;
+            }
+            if (kto.equals("Gracz")){
+                Gracz gracz1 = (Gracz) plansza.getPola(koordynatX+ruchX, koordynatY+ruchY);
+                gracz1.getHandler().spotkanieZGraczem(this);
             }
             if (kto.equals("Wilk")) handler.wyczyszczenieKontaGracza();
             if (kto.equals("Lis")) handler.usuniecieKrolikowKonto();
@@ -184,5 +182,12 @@ public class Gracz implements postac.Postac {
      */
     public ListaZwierzat getStanKonta() {
         return stanKonta;
+    }
+
+    public int wartoscKonta(){
+        int krowy = (stanKonta.getIloscKoni()*Przeliczniki.getKrowyZaKonie())+ stanKonta.getIloscKrow();
+        int swinie = (krowy*Przeliczniki.getSwinieZaKrowy())+ stanKonta.getIloscSwin();
+        int owce = (swinie*Przeliczniki.getOwceZaSwinie())+ stanKonta.getIloscOwiec();
+        return (owce*Przeliczniki.getKrolikiZaOwce())+ stanKonta.getIloscKrolikow();
     }
 }

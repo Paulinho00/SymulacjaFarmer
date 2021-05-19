@@ -7,6 +7,7 @@ import glownyUczestnikSymulacji.Gracz;
 public class WykonujacyInterakcje {
     private boolean czySpotkalWilka;
     private boolean czySpotkalLisa;
+    private boolean czyZostalOkradziony;
     private final Gracz gracz;
 
     /**
@@ -14,8 +15,9 @@ public class WykonujacyInterakcje {
      * @param gracz referencja do obiektu gracza
      */
     public WykonujacyInterakcje( Gracz gracz){
-        this.czySpotkalWilka=false;
-        this.czySpotkalLisa=false;
+        czySpotkalWilka=false;
+        czySpotkalLisa=false;
+        czyZostalOkradziony = false;
         this.gracz=gracz;
     }
 
@@ -41,6 +43,24 @@ public class WykonujacyInterakcje {
             gracz.zmnienIloscKonto("Kon", 0);
             czySpotkalWilka = true;
         }
+    }
+
+    /**
+     * Zabiera wszystkie zwierzeta z {@link WykonujacyInterakcje#gracz} do gracza przekazanego jako argument metody
+     * @param gracz1 otrzymujacy zwierzeta z {@link WykonujacyInterakcje#gracz}
+     */
+    public void spotkanieZGraczem(Gracz gracz1){
+            gracz1.zmnienIloscKonto("Krolik", gracz1.getStanKonta().getIloscKrolikow() + gracz.getStanKonta().getIloscKrolikow());
+            gracz.zmnienIloscKonto("Krolik", 0);
+            gracz1.zmnienIloscKonto("Owca", gracz1.getStanKonta().getIloscOwiec() + gracz.getStanKonta().getIloscOwiec());
+            gracz.zmnienIloscKonto("Owca", 0);
+            gracz1.zmnienIloscKonto("Swinia", gracz1.getStanKonta().getIloscSwin() + gracz.getStanKonta().getIloscSwin());
+            gracz.zmnienIloscKonto("Swinia", 0);
+            gracz1.zmnienIloscKonto("Krowa", gracz1.getStanKonta().getIloscKrow() + gracz.getStanKonta().getIloscSwin());
+            gracz.zmnienIloscKonto("Krowa", 0);
+            gracz1.zmnienIloscKonto("Kon", gracz1.getStanKonta().getIloscKoni() + gracz.getStanKonta().getIloscKrow());
+            gracz.zmnienIloscKonto("Krowa", 0);
+            czyZostalOkradziony = true;
     }
 
     /**
@@ -73,5 +93,21 @@ public class WykonujacyInterakcje {
      */
     public boolean isCzySpotkalLisa() {
         return czySpotkalLisa;
+    }
+
+    /**
+     *
+     * @param czyZostalOkradziony true jesli zostal okradziony
+     */
+    public void setCzyZostalOkradziony(boolean czyZostalOkradziony) {
+        this.czyZostalOkradziony = czyZostalOkradziony;
+    }
+
+    /**
+     *
+     * @return czy gracz zostal okradziony przez innego gracza
+     */
+    public boolean isCzyZostalOkradziony() {
+        return czyZostalOkradziony;
     }
 }

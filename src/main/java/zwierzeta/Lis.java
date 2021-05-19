@@ -1,4 +1,5 @@
 package zwierzeta;
+import glownyUczestnikSymulacji.Gracz;
 import miejsceSymulacji.Plansza;
 import wykonujacyInterakcje.WykonujacyInterakcje;
 import java.util.Random;
@@ -11,20 +12,18 @@ public class Lis implements postac.Postac{
     private int koordynatX;
     private int koordynatY;
     private final Plansza plansza;
-    private final WykonujacyInterakcje handler;
+    private boolean wykonalRuch;
 
     /**
      *
      * @param x startowy koordynat X na planszy
      * @param y startowy koordynat Y na planszy
      * @param plansza plansza po ktorej bedzie sie poruszal
-     * @param handler referencja do obiektu obslugujacego interakcje z graczem
      */
-    public Lis(int x, int y, Plansza plansza, WykonujacyInterakcje handler){
+    public Lis(int x, int y, Plansza plansza){
         koordynatX = x;
         koordynatY = y;
         this.plansza = plansza;
-        this.handler = handler;
         plansza.setPola(x,y,this);
     }
 
@@ -98,7 +97,9 @@ public class Lis implements postac.Postac{
             if (plansza.czyZajete(koordynatX + ruchX, koordynatY + ruchY)) {
                 String Kto = plansza.ktoJest(koordynatX + ruchX, koordynatY + ruchY);
                 if (Kto.equals("Gracz")) {
-                    handler.usuniecieKrolikowKonto();
+                    Gracz gracz = (Gracz) plansza.getPola(koordynatX+ruchX, koordynatY+ruchY);
+                    gracz.getHandler().usuniecieKrolikowKonto();
+                    wykonalRuch=true;
                     return;
                 }
                 if (Kto.equals("Krolik")) {
@@ -106,11 +107,13 @@ public class Lis implements postac.Postac{
                     plansza.przemieszczenie(koordynatX, koordynatY, koordynatX + ruchX, koordynatY + ruchY);
                     koordynatX += ruchX;
                     koordynatY += ruchY;
+                    wykonalRuch = true;
                 }
             } else {
                 plansza.przemieszczenie(koordynatX, koordynatY, koordynatX + ruchX, koordynatY + ruchY);
                 koordynatX += ruchX;
                 koordynatY += ruchY;
+                wykonalRuch = true;
             }
 
         }
@@ -132,5 +135,21 @@ public class Lis implements postac.Postac{
     @Override
     public int getKoordynatY() {
         return koordynatY;
+    }
+
+    /**
+     *
+     * @return czy obiekt wykonal ruch
+     */
+    public boolean isWykonalRuch() {
+        return wykonalRuch;
+    }
+
+    /**
+     *
+     * @param wykonalRuch nowa wartosc pola {@link Lis#wykonalRuch}
+     */
+    public void setWykonalRuch(boolean wykonalRuch) {
+        this.wykonalRuch = wykonalRuch;
     }
 }
