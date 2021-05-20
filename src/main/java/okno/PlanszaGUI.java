@@ -1,5 +1,6 @@
 package okno;
 
+import glownyUczestnikSymulacji.Gracz;
 import miejsceSymulacji.Plansza;
 
 import javax.swing.*;
@@ -42,8 +43,9 @@ public class PlanszaGUI extends JPanel {
                 } else{
                     String kto = plansza.ktoJest(i,j);
                     if(kto.equals("Gracz")){
+                        Gracz gracz = (Gracz) plansza.getPola(i,j);
                         temp.setBackground(Color.BLACK);
-                        temp.setText("G");
+                        temp.setText("G"+gracz.getKtory());
                         temp.setForeground(Color.WHITE);
                     }
                     if (kto.equals("Lis")){

@@ -1,4 +1,5 @@
 package miejsceSymulacji;
+import obslugaPlikow.Zapisywator;
 import postac.Postac;
 import glownyUczestnikSymulacji.Gracz;
 import zwierzeta.*;
@@ -16,6 +17,8 @@ public class Plansza {
     private final Postac[][] pola;
     private final Kostka kostka;
     private final int iloscPol;
+    private  Gracz[] gracze;
+    private Zapisywator zapis;
 
     /**
      *
@@ -24,7 +27,7 @@ public class Plansza {
      * @param kostka obiekt kostki uzywany do wylosowania rodzaju zwierzecia przy losowaniu
      * @exception IllegalArgumentException gdy plansza jest za mala lub nie jest kwadratowa
      */
-    public Plansza(int x, int y, Kostka kostka){
+    public Plansza(int x, int y, int[] kordX, int[] kordY, Kostka kostka){
         if(x <= 6 || y <= 6){
             throw new IllegalArgumentException("Zbyt mała plansza");
         }
@@ -37,7 +40,19 @@ public class Plansza {
         zajetePola = 0;
         this.kostka = kostka;
         pola = new Postac[x][y];
+        umieszczenieGraczy(kordX, kordY);
+        umieszczenieDrapieznikow();
+        uzupelnienie();
+        zapis = new Zapisywator();
+        zapis.naglowek();
+    }
 
+    public void WykonajTure(){
+        RuchyNaPlanszy();
+        wymianyGraczy();
+        zapis.KolejnaTura(gracze);
+        ResetZwierzat();
+        uzupelnienie();
     }
 
     /**
@@ -164,7 +179,7 @@ public class Plansza {
      * {@link zwierzeta.Swinia}, {@link zwierzeta.Owca}, {@link zwierzeta.Krolik},
      * na planszy i pilnuje aby żaden nie obiekt nie wykonał podwójnego ruchu
      */
-    public void RuchyNaPlanszy(){
+    private void RuchyNaPlanszy(){
         String kto;
         Krolik krolik;
         Owca owca;
@@ -173,6 +188,7 @@ public class Plansza {
         Kon kon;
         Lis lis;
         Wilk wilk;
+        Gracz gracz;
         for(int i = 0; i < rozmiarX; i++){
             for(int j = 0; j < rozmiarY; j++) {
                 if (czyZajete(i, j)) {
@@ -221,6 +237,12 @@ public class Plansza {
                             wilk.ruch();
                         }
                     }
+                    if(kto.equals("Gracz")){
+                        gracz = (Gracz) getPola(i,j);
+                        if(!gracz.isWykonalRuch()){
+                            gracz.ruch();
+                        }
+                    }
                 }
             }
         }
@@ -238,6 +260,7 @@ public class Plansza {
         Kon kon;
         Lis lis;
         Wilk wilk;
+        Gracz gracz;
         for(int i = 0; i < rozmiarX; i++){
             for(int j = 0; j < rozmiarY; j++) {
                 if (czyZajete(i, j)) {
@@ -272,6 +295,13 @@ public class Plansza {
                         wilk = (Wilk) getPola(i,j);
                         wilk.setWykonalRuch(false);
                     }
+                    if(kto.equals("Gracz")){
+                        gracz = (Gracz) getPola(i,j);
+                        gracz.setWykonalRuch(false);
+                        gracz.getHandler().setCzyZostalOkradziony(false);
+                        gracz.getHandler().setCzySpotkalLisa(false);
+                        gracz.getHandler().setCzySpotkalWilka(false);
+                    }
                 }
             }
 
@@ -281,7 +311,7 @@ public class Plansza {
     /**
      * Umieszcza Wilka i Lisa na planszy
      */
-    public void umieszczenieDrapieznikow(){
+    private void umieszczenieDrapieznikow(){
         int x,y;
         Random losowanie = new Random();
         do {
@@ -296,6 +326,25 @@ public class Plansza {
         new Lis(x, y, this);
     }
 
+    private void umieszczenieGraczy(int[] kordX, int[] kordY){
+        gracze = new  Gracz[kordX.length];
+        for(int i = 0; i < kordX.length;i++){
+            gracze[i] = new Gracz(kordX[i], kordY[i],this,i+1);
+            setPola(kordX[i], kordY[i],gracze[i]);
+        }
+    }
 
+    public void wymianyGraczy(){
+        for(int i =0; i < gracze.length; i++){
+            gracze[i].wymiana();
+        }
+    }
 
+    public Gracz[] getGracze() {
+        return gracze;
+    }
+
+    public Zapisywator getZapis() {
+        return zapis;
+    }
 }

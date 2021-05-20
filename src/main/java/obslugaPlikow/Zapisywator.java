@@ -23,14 +23,14 @@ public class Zapisywator {
 
     }
 
-    public void KolejnaTura(Gracz gracz, Gracz gracz1, Gracz gracz2){
+    public void KolejnaTura(Gracz[] gracz){
             tury++;
         try {
             plik.append(tury.toString());
             plik.append(";");
-            dodajLinie(gracz);
-            dodajLinie(gracz1);
-            dodajLinie(gracz2);
+            for(int i =0; i < gracz.length; i++) {
+                dodajLinie(gracz[i]);
+            }
             plik.append("\n");
         } catch (IOException e) {
             e.printStackTrace();

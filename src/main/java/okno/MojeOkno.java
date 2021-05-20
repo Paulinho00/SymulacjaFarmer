@@ -3,8 +3,6 @@ package okno;
 import glownyUczestnikSymulacji.Gracz;
 import miejsceSymulacji.Kostka;
 import miejsceSymulacji.Plansza;
-import obslugaPlikow.Zapisywator;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +15,13 @@ public class MojeOkno extends JFrame implements ActionListener {
     private final JTextField tStartKord1X, tStartKord1Y, tStartKord2X, tStartKord2Y, tScianyKroliki, tScianyOwce, tScianySwinie, tScianyKrowy, tScianyKonie;
     private final JTextField tPlanszaRozmiar,tStartKord3X, tStartKord3Y;
     private final JButton potwierdz;
-    private int x,y,kord1X,kord1Y,kord2X, kord2Y, kord3X, kord3Y,scianyKroliki, scianyOwce, scianyKonie, scianySwinie, scianyKrowy;
+    private int x,y,scianyKroliki, scianyOwce, scianyKonie, scianySwinie, scianyKrowy;
+    private int[] koordynatyX,koordynatyY;
+    private Timer timer;
+    private JFrame planszaRamka;
+    private Plansza plansza;
+    private PlanszaGUI planszaGUI;
+
 
     public MojeOkno(){
         setSize(1000,300);
@@ -135,53 +139,42 @@ public class MojeOkno extends JFrame implements ActionListener {
         add(potwierdz);
         potwierdz.addActionListener(this);
 
+
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        Timer timer = new Timer(1000,this);
         if(source == potwierdz) {
             try{
                     Parsowanie();
                     Kostka kostka = new Kostka(scianyKroliki, scianyOwce, scianySwinie, scianyKrowy, scianyKonie);
-                    Plansza plansza = new Plansza(x, y, kostka);
-                    Gracz gracz1 = new Gracz(kord1X, kord1Y,plansza,1);
-                    Gracz gracz2 = new Gracz(kord2X, kord2Y, plansza,2);
-                    Gracz gracz3 = new Gracz(kord3X, kord3Y, plansza,3);
-                    plansza.umieszczenieDrapieznikow();
-                    Zapisywator zapis = new Zapisywator();
-                    zapis.naglowek();
-                    JFrame planszaRamka = new JFrame("Plansza");
-                    planszaRamka.setSize(4000,4000);
-                    planszaRamka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    planszaRamka.setVisible(true);
-                    PlanszaGUI planszaGUI = new PlanszaGUI(plansza);
+                    plansza = new Plansza(x, y, koordynatyX, koordynatyY, kostka);
+                    tworzenieRamkiZPlansza();
+                    planszaGUI = new PlanszaGUI(plansza);
                     planszaRamka.add(planszaGUI);
-                    plansza.uzupelnienie();
-                    
+                    timer = new Timer(3000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent z) {
+                        System.out.println("Wchodzi");
+
+                        timer.stop();
+                    }
+                     });
                     for(int i = 0; i < 50; i++){
-                        gracz1.ruch();
-                        gracz2.ruch();
-                        gracz3.ruch();
-                        plansza.RuchyNaPlanszy();
-                        plansza.ResetZwierzat();
-                        gracz1.wymiana();
-                        gracz2.wymiana();
-                        gracz3.wymiana();
-                        plansza.uzupelnienie();
-                        zapis.KolejnaTura(gracz1,gracz2,gracz3);
-                        resetGraczy(gracz1,gracz2,gracz3);
+                        plansza.WykonajTure();
                         planszaGUI.aktualizacjaGUI();
                     }
-                    zapis.zamnkniecie();
-                    JOptionPane.showMessageDialog(null,"Symulacja zakonczona sukcesem. Wygral" + ktoWygral(gracz1,gracz2,gracz3)+".");
+                    plansza.getZapis().zamnkniecie();
+                    JOptionPane.showMessageDialog(null,"Symulacja zakonczona sukcesem. Wygral" + ktoWygral(plansza.getGracze())+".");
                 } catch(NumberFormatException f){JOptionPane.showMessageDialog(null,"Bledne dane. Sprobuj jeszcze raz", "Bledne dane", JOptionPane.ERROR_MESSAGE);}
                 catch(IllegalArgumentException z)  {JOptionPane.showMessageDialog(null,"Bledne dane. Sprobuj jeszcze raz", "Bledne dane",JOptionPane.ERROR_MESSAGE);}
             }
 
-        }
+
+
+
         }
 
 
@@ -195,37 +188,37 @@ public class MojeOkno extends JFrame implements ActionListener {
     private void Parsowanie(){
         x = Integer.parseInt(tPlanszaRozmiar.getText());
         y = Integer.parseInt(tPlanszaRozmiar.getText());
-        kord1X = Integer.parseInt(tStartKord1X.getText())-1;
-        kord1Y = Integer.parseInt(tStartKord1Y.getText())-1;
-        kord2X = Integer.parseInt(tStartKord2X.getText())-1;
-        kord2Y = Integer.parseInt(tStartKord2Y.getText())-1;
-        kord3X = Integer.parseInt(tStartKord3X.getText())-1;
-        kord3Y = Integer.parseInt(tStartKord3Y.getText())-1;
+        koordynatyX = new int[3];
+        koordynatyY = new int[3];
+        koordynatyX[0] = Integer.parseInt(tStartKord1X.getText())-1;
+        koordynatyY[0] = Integer.parseInt(tStartKord1Y.getText())-1;
+        koordynatyX[1] = Integer.parseInt(tStartKord2X.getText())-1;
+        koordynatyY[1] = Integer.parseInt(tStartKord2Y.getText())-1;
+        koordynatyX[2] = Integer.parseInt(tStartKord3X.getText())-1;
+        koordynatyY[2] = Integer.parseInt(tStartKord3Y.getText())-1;
+
         scianyKroliki = Integer.parseInt(tScianyKroliki.getText());
         scianyOwce = Integer.parseInt(tScianyOwce.getText());
         scianySwinie = Integer.parseInt(tScianySwinie.getText());
         scianyKrowy = Integer.parseInt(tScianyKrowy.getText());
         scianyKonie = Integer.parseInt(tScianyKonie.getText());
     }
-    private void resetGraczy(Gracz gracz1, Gracz gracz2, Gracz gracz3){
-        gracz1.getHandler().setCzySpotkalLisa(false);
-        gracz1.getHandler().setCzySpotkalWilka(false);
-        gracz1.getHandler().setCzyZostalOkradziony(false);
-        gracz2.getHandler().setCzySpotkalLisa(false);
-        gracz2.getHandler().setCzySpotkalWilka(false);
-        gracz2.getHandler().setCzyZostalOkradziony(false);
-        gracz3.getHandler().setCzySpotkalLisa(false);
-        gracz3.getHandler().setCzySpotkalWilka(false);
-        gracz3.getHandler().setCzyZostalOkradziony(false);
+
+
+    private String ktoWygral(Gracz[] gracz){
+        String kto = "";
+       int max = Math.max(gracz[0].wartoscKonta(), Math.max(gracz[1].wartoscKonta(),gracz[2].wartoscKonta()));
+      if(max == gracz[0].wartoscKonta() ) kto = kto + " " + "pierwszy gracz";
+      if(max == gracz[1].wartoscKonta()) kto = kto + " " + "drugi gracz";
+      if(max == gracz[2].wartoscKonta()) kto = kto+ " " + "trzeci gracz";
+      return kto;
     }
 
-    private String ktoWygral(Gracz gracz1, Gracz gracz2, Gracz gracz3){
-        String kto = "";
-       int max = Math.max(gracz1.wartoscKonta(), Math.max(gracz2.wartoscKonta(),gracz3.wartoscKonta()));
-      if(max == gracz1.wartoscKonta() ) kto = kto + " " + "pierwszy gracz";
-      if(max == gracz2.wartoscKonta()) kto = kto + " " + "drugi gracz";
-      if(max == gracz3.wartoscKonta()) kto = kto+ " " + "trzeci gracz";
-      return kto;
+    private void tworzenieRamkiZPlansza(){
+        planszaRamka = new JFrame("Plansza");
+        planszaRamka.setSize(4000,4000);
+        planszaRamka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        planszaRamka.setVisible(true);
     }
 
 }

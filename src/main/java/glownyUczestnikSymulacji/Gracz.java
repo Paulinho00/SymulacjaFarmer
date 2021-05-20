@@ -16,6 +16,7 @@ public class Gracz implements postac.Postac {
     private final Plansza plansza;
     private final WykonujacyInterakcje handler;
     private int ktory;
+    private boolean wykonalRuch;
 
     /**
      *
@@ -36,6 +37,7 @@ public class Gracz implements postac.Postac {
         handler = new WykonujacyInterakcje(this);
         plansza.setPola(x,y,this);
         this.ktory = ktory;
+        wykonalRuch = false;
     }
 
     /**
@@ -56,6 +58,7 @@ public class Gracz implements postac.Postac {
             koordynatX += ruchX;
             koordynatY += ruchY;
             iloscRuchow++;
+            wykonalRuch = true;
         }
         else {
             String kto = plansza.ktoJest(koordynatX + ruchX, koordynatY + ruchY);
@@ -65,13 +68,21 @@ public class Gracz implements postac.Postac {
                 koordynatX += ruchX;
                 koordynatY += ruchY;
                 iloscRuchow++;
+                wykonalRuch = true;
             }
             if (kto.equals("Gracz")){
                 Gracz gracz1 = (Gracz) plansza.getPola(koordynatX+ruchX, koordynatY+ruchY);
                 gracz1.getHandler().spotkanieZGraczem(this);
+                wykonalRuch = true;
             }
-            if (kto.equals("Wilk")) handler.wyczyszczenieKontaGracza();
-            if (kto.equals("Lis")) handler.usuniecieKrolikowKonto();
+            if (kto.equals("Wilk")){
+                handler.wyczyszczenieKontaGracza();
+                wykonalRuch = true;
+            }
+            if (kto.equals("Lis")) {
+                handler.usuniecieKrolikowKonto();
+                wykonalRuch = true;
+            }
         }
 
     }
@@ -191,5 +202,17 @@ public class Gracz implements postac.Postac {
         int swinie = (krowy*Przeliczniki.getSwinieZaKrowy())+ stanKonta.getIloscSwin();
         int owce = (swinie*Przeliczniki.getOwceZaSwinie())+ stanKonta.getIloscOwiec();
         return (owce*Przeliczniki.getKrolikiZaOwce())+ stanKonta.getIloscKrolikow();
+    }
+
+    public boolean isWykonalRuch() {
+        return wykonalRuch;
+    }
+
+    public void setWykonalRuch(boolean wykonalRuch) {
+        this.wykonalRuch = wykonalRuch;
+    }
+
+    public int getKtory() {
+        return ktory;
     }
 }
