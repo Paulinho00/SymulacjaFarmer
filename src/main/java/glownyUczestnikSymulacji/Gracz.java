@@ -15,6 +15,7 @@ public class Gracz implements postac.Postac {
     private final ListaZwierzat stanKonta;
     private final Plansza plansza;
     private final WykonujacyInterakcje handler;
+    private int ktory;
 
     /**
      *
@@ -23,7 +24,7 @@ public class Gracz implements postac.Postac {
      * @param plansza referencja do planszy na ktorej znajduje sie gracz
      * @exception IllegalArgumentException gdy podane koordynaty sa bledne lub startowe stany konta za duze
      */
-    public Gracz(int x, int y, Plansza plansza) {
+    public Gracz(int x, int y, Plansza plansza, int ktory) {
         if(x < 0 ||  y < 0 || y >= plansza.getRozmiarY() || x >= plansza.getRozmiarX() || plansza.czyZajete(x,y)){
             throw new IllegalArgumentException("Bledne koordynaty");
         }
@@ -34,6 +35,7 @@ public class Gracz implements postac.Postac {
         this.plansza = plansza;
         handler = new WykonujacyInterakcje(this);
         plansza.setPola(x,y,this);
+        this.ktory = ktory;
     }
 
     /**

@@ -21,7 +21,7 @@ public class PlanszaGUI extends JPanel {
         pola = new JLabel[plansza.getRozmiarX()][plansza.getRozmiarY()];
         for(int i = 0; i <plansza.getRozmiarX(); i++){
             for(int j = 0; j <plansza.getRozmiarY(); j++) {
-                JLabel label = new JLabel("");
+                JLabel label = new JLabel("",SwingConstants.CENTER);
                 label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 label.setOpaque(true);
                 label.setBackground(Color.WHITE);
@@ -37,31 +37,49 @@ public class PlanszaGUI extends JPanel {
                 temp = pola[i][j];
                 if(!plansza.czyZajete(i,j)){
                     temp.setBackground(Color.WHITE);
+                    temp.setText("");
+                    temp.setForeground(Color.BLACK);
                 } else{
                     String kto = plansza.ktoJest(i,j);
                     if(kto.equals("Gracz")){
                         temp.setBackground(Color.BLACK);
+                        temp.setText("G");
+                        temp.setForeground(Color.WHITE);
                     }
                     if (kto.equals("Lis")){
                         temp.setBackground(new Color(255,101,0));
+                        temp.setText("L");
+                        temp.setForeground(Color.BLACK);
                     }
                     if(kto.equals("Wilk")){
                         temp.setBackground(Color.BLUE);
+                        temp.setText("W");
+                        temp.setForeground(Color.BLACK);
                     }
                     if(kto.equals("Krolik")){
                         temp.setBackground(Color.DARK_GRAY);
+                        temp.setText("Krl");
+                        temp.setForeground(Color.WHITE);
                     }
                     if(kto.equals("Owca")){
                         temp.setBackground(Color.YELLOW);
+                        temp.setText("O");
+                        temp.setForeground(Color.BLACK);
                     }
                     if(kto.equals("Swinia")){
                         temp.setBackground(Color.PINK);
+                        temp.setText("S");
+                        temp.setForeground(Color.BLACK);
                     }
                     if(kto.equals("Krowa")){
                         temp.setBackground(Color.MAGENTA);
+                        temp.setText("Krw");
+                        temp.setForeground(Color.BLACK);
                     }
                     if(kto.equals("Kon")){
                         temp.setBackground(Color.GREEN);
+                        temp.setText("K");
+                        temp.setForeground(Color.BLACK);
                     }
                 }
             }

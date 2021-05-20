@@ -8,7 +8,6 @@ import obslugaPlikow.Zapisywator;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 
 public class MojeOkno extends JFrame implements ActionListener {
@@ -142,14 +141,15 @@ public class MojeOkno extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
+        Timer timer = new Timer(1000,this);
         if(source == potwierdz) {
             try{
                     Parsowanie();
                     Kostka kostka = new Kostka(scianyKroliki, scianyOwce, scianySwinie, scianyKrowy, scianyKonie);
                     Plansza plansza = new Plansza(x, y, kostka);
-                    Gracz gracz1 = new Gracz(kord1X, kord1Y,plansza);
-                    Gracz gracz2 = new Gracz(kord2X, kord2Y, plansza);
-                    Gracz gracz3 = new Gracz(kord3X, kord3Y, plansza);
+                    Gracz gracz1 = new Gracz(kord1X, kord1Y,plansza,1);
+                    Gracz gracz2 = new Gracz(kord2X, kord2Y, plansza,2);
+                    Gracz gracz3 = new Gracz(kord3X, kord3Y, plansza,3);
                     plansza.umieszczenieDrapieznikow();
                     Zapisywator zapis = new Zapisywator();
                     zapis.naglowek();
@@ -159,10 +159,9 @@ public class MojeOkno extends JFrame implements ActionListener {
                     planszaRamka.setVisible(true);
                     PlanszaGUI planszaGUI = new PlanszaGUI(plansza);
                     planszaRamka.add(planszaGUI);
-
-                    Random losowanie = new Random();
                     plansza.uzupelnienie();
-                    for(int i = 0; i < 10; i++){
+                    
+                    for(int i = 0; i < 50; i++){
                         gracz1.ruch();
                         gracz2.ruch();
                         gracz3.ruch();
@@ -180,8 +179,11 @@ public class MojeOkno extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null,"Symulacja zakonczona sukcesem. Wygral" + ktoWygral(gracz1,gracz2,gracz3)+".");
                 } catch(NumberFormatException f){JOptionPane.showMessageDialog(null,"Bledne dane. Sprobuj jeszcze raz", "Bledne dane", JOptionPane.ERROR_MESSAGE);}
                 catch(IllegalArgumentException z)  {JOptionPane.showMessageDialog(null,"Bledne dane. Sprobuj jeszcze raz", "Bledne dane",JOptionPane.ERROR_MESSAGE);}
+            }
+
         }
         }
+
 
     public static void main(String[] args){
         MojeOkno okno = new MojeOkno();
