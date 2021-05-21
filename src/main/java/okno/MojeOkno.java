@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Okno z GUI, w ktorym uzytkownik wpisuje startowe dane
+ */
 
 public class MojeOkno extends JFrame implements ActionListener {
 
@@ -23,6 +26,9 @@ public class MojeOkno extends JFrame implements ActionListener {
     private PlanszaGUI planszaGUI;
 
 
+    /**
+     * Tworzenie wygladu GUI, odpowiedzialnego za wpisywane danych startowych
+     */
     public MojeOkno(){
         setSize(1000,300);
         setTitle("Symulacja Farmer");
@@ -139,10 +145,27 @@ public class MojeOkno extends JFrame implements ActionListener {
         add(potwierdz);
         potwierdz.addActionListener(this);
 
-
+        timer = new Timer(3000, new ActionListener() {
+            int i = 0;
+            @Override
+            public void actionPerformed(ActionEvent z) {
+                plansza.WykonajTure();
+                planszaGUI.aktualizacjaGUI();
+                i++;
+                if(i == 50)
+                {
+                    plansza.getZapis().zamnkniecie();
+                    JOptionPane.showMessageDialog(null,"Symulacja zakonczona sukcesem. Wygral gracz: " + ktoWygral(plansza.getGracze())+".");
+                    timer.stop();
+                }
+            }
+        });
     }
 
 
+    /**
+     * ActionListener przypisany do przycisku{@link MojeOkno#potwierdz}
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
@@ -154,20 +177,7 @@ public class MojeOkno extends JFrame implements ActionListener {
                     tworzenieRamkiZPlansza();
                     planszaGUI = new PlanszaGUI(plansza);
                     planszaRamka.add(planszaGUI);
-                    timer = new Timer(3000, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent z) {
-                        System.out.println("Wchodzi");
-
-                        timer.stop();
-                    }
-                     });
-                    for(int i = 0; i < 50; i++){
-                        plansza.WykonajTure();
-                        planszaGUI.aktualizacjaGUI();
-                    }
-                    plansza.getZapis().zamnkniecie();
-                    JOptionPane.showMessageDialog(null,"Symulacja zakonczona sukcesem. Wygral" + ktoWygral(plansza.getGracze())+".");
+                    timer.start();
                 } catch(NumberFormatException f){JOptionPane.showMessageDialog(null,"Bledne dane. Sprobuj jeszcze raz", "Bledne dane", JOptionPane.ERROR_MESSAGE);}
                 catch(IllegalArgumentException z)  {JOptionPane.showMessageDialog(null,"Bledne dane. Sprobuj jeszcze raz", "Bledne dane",JOptionPane.ERROR_MESSAGE);}
             }
@@ -185,6 +195,9 @@ public class MojeOkno extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Parsowanie danych wprowadzonych przez uzytkownika
+     */
     private void Parsowanie(){
         x = Integer.parseInt(tPlanszaRozmiar.getText());
         y = Integer.parseInt(tPlanszaRozmiar.getText());
@@ -205,15 +218,26 @@ public class MojeOkno extends JFrame implements ActionListener {
     }
 
 
+    /**
+     * Sprawdza ktory gracz ma konto o najwiekszej wartosci
+     * @param gracz tablica z wszystkimi graczami na planszy
+     * @return numery graczy
+     */
     private String ktoWygral(Gracz[] gracz){
         String kto = "";
-       int max = Math.max(gracz[0].wartoscKonta(), Math.max(gracz[1].wartoscKonta(),gracz[2].wartoscKonta()));
-      if(max == gracz[0].wartoscKonta() ) kto = kto + " " + "pierwszy gracz";
-      if(max == gracz[1].wartoscKonta()) kto = kto + " " + "drugi gracz";
-      if(max == gracz[2].wartoscKonta()) kto = kto+ " " + "trzeci gracz";
+        int  max = 0;
+      for(int i =0 ; i < gracz.length; i++){
+          if(gracz[i].wartoscKonta() >= max) max = gracz[i].wartoscKonta();
+      }
+      for(int i=0; i < gracz.length; i++ ) {
+          if(max == gracz[i].wartoscKonta()) kto = kto + i + " ";
+      }
       return kto;
     }
 
+    /**
+     * tworzy okno z wygladem planszy
+     */
     private void tworzenieRamkiZPlansza(){
         planszaRamka = new JFrame("Plansza");
         planszaRamka.setSize(4000,4000);

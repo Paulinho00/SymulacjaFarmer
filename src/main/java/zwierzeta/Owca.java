@@ -12,7 +12,7 @@ public class Owca implements postac.Postac{
     private boolean wykonalRuch;
 
     /**
-     *
+     * tworzy obiekt Owca
      * @param x koordynat startowy X na ktorym pojawi sie obiekt na planszy
      * @param y koordynat startowy Y na ktorym pojawi sie obiekt na planszy
      * @param plansza plansza na ktorej porusza sie obiekt
@@ -66,8 +66,8 @@ public class Owca implements postac.Postac{
     }
 
     /**
-     *
-     * @return aktualny koordynat X obiektu
+     * zwraca aktualny koordynat X obiektu
+     * @return {@link Owca#koordynatX}
      */
     @Override
     public int getKoordynatX() {
@@ -75,8 +75,8 @@ public class Owca implements postac.Postac{
     }
 
     /**
-     *
-     * @return aktualny koordynat Y obiektu
+     * zwraca aktualny koordynat Y obiektu
+     * @return {@link Owca#koordynatX}
      */
     @Override
     public int getKoordynatY() {
@@ -84,15 +84,15 @@ public class Owca implements postac.Postac{
     }
 
     /**
-     *
-     * @return czy obiekt wykonal ruch w tej turze
+     * zwraca czy obiekt wykonal ruch w tej turze
+     * @return {@link Owca#wykonalRuch}
      */
     public boolean isWykonalRuch() {
         return wykonalRuch;
     }
 
     /**
-     *
+     * ustawia nowa wartosc pola {@link Owca#wykonalRuch}
      * @param wykonalRuch nowa wartosc pola {@link Owca#wykonalRuch}
      */
     public void setWykonalRuch(boolean wykonalRuch) {

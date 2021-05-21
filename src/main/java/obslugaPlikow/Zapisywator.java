@@ -4,12 +4,18 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * zapisuje dane odczytane z planszy do pliku .csv
+ */
 public class Zapisywator {
 
     private File nowyPlik;
     private FileWriter plik;
     private Integer tury;
 
+    /**
+     * tworzy obiekt odpowiedzialny za utworzenie pliku .csv i zapisywanie odczytanych danych do niego
+     */
     public Zapisywator() {
         nowyPlik = new File("SymulacjaFarmer.csv");
         tury = 0;
@@ -23,6 +29,10 @@ public class Zapisywator {
 
     }
 
+    /**
+     * zapisuje stany konta, ilosc ruchow oraz informacje czy: spotkal Wilka, Lisa lub zostal okradziony po wykonaniu tury, do pliku, dla kazdego gracza
+     * @param gracz
+     */
     public void KolejnaTura(Gracz[] gracz){
             tury++;
         try {
@@ -39,6 +49,9 @@ public class Zapisywator {
 
     }
 
+    /**
+     * tworzy naglowek tabeli w pliku
+     */
     public void naglowek(){
         try {
             for(int i = 0; i < 3; i++) {
@@ -72,7 +85,11 @@ public class Zapisywator {
     }
 
 
-    public void dodajLinie(Gracz gracz) {
+    /**
+     * odczytuje z planszy stany konta, ilosc ruchow oraz informacje czy: spotkal Wilka, Lisa lub zostal okradziony danego gracza
+     * @param gracz obiekt z ktorego metoda odczytuje dane i zapisuje je do pliku
+     */
+    private void dodajLinie(Gracz gracz) {
         try {
             plik.append(";");
             String s = Integer.toString(gracz.getIloscRuchow());
@@ -107,6 +124,9 @@ public class Zapisywator {
         }
     }
 
+    /**
+     * zamyka strumien zapisujacy do pliku
+     */
     public void zamnkniecie(){
         try {
             plik.close();

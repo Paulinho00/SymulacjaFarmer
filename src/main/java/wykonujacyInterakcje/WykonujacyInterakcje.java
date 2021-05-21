@@ -2,7 +2,7 @@ package wykonujacyInterakcje;
 import glownyUczestnikSymulacji.Gracz;
 
 /**
- * wykonuje interkacje miedzy graczem a wilkiem i lisem
+ * wykonuje interakcje miedzy graczem a wilkiem i lisem
  */
 public class WykonujacyInterakcje {
     private boolean czySpotkalWilka;
@@ -11,8 +11,8 @@ public class WykonujacyInterakcje {
     private final Gracz gracz;
 
     /**
-     *
-     * @param gracz referencja do obiektu gracza
+     * tworzy obiekt ktory obsluguje interakcje miedzy danym graczem a Lisem, Wilkie, lub innym graczem
+     * @param gracz referencja do obiektu gracza obslugiwanego przez tworzony obiekt
      */
     public WykonujacyInterakcje( Gracz gracz){
         czySpotkalWilka=false;
@@ -56,15 +56,15 @@ public class WykonujacyInterakcje {
             gracz.zmnienIloscKonto("Owca", 0);
             gracz1.zmnienIloscKonto("Swinia", gracz1.getStanKonta().getIloscSwin() + gracz.getStanKonta().getIloscSwin());
             gracz.zmnienIloscKonto("Swinia", 0);
-            gracz1.zmnienIloscKonto("Krowa", gracz1.getStanKonta().getIloscKrow() + gracz.getStanKonta().getIloscSwin());
+            gracz1.zmnienIloscKonto("Krowa", gracz1.getStanKonta().getIloscKrow() + gracz.getStanKonta().getIloscKrow());
             gracz.zmnienIloscKonto("Krowa", 0);
-            gracz1.zmnienIloscKonto("Kon", gracz1.getStanKonta().getIloscKoni() + gracz.getStanKonta().getIloscKrow());
-            gracz.zmnienIloscKonto("Krowa", 0);
+            gracz1.zmnienIloscKonto("Kon", gracz1.getStanKonta().getIloscKoni() + gracz.getStanKonta().getIloscKoni());
+            gracz.zmnienIloscKonto("Kon", 0);
             czyZostalOkradziony = true;
     }
 
     /**
-     *
+     * ustawia nowa wartosc pola {@link WykonujacyInterakcje#czySpotkalWilka}
      * @param czySpotkalWilka true jesli spotkal wilka, false jesli nie
      */
     public void setCzySpotkalWilka(boolean czySpotkalWilka) {
@@ -72,7 +72,7 @@ public class WykonujacyInterakcje {
     }
 
     /**
-     *
+     * ustawia nowa wartosc pola {@link WykonujacyInterakcje#czySpotkalLisa}
      * @param czySpotkalLisa true jesli spotkal lisa, false jesli nie
      */
     public void setCzySpotkalLisa(boolean czySpotkalLisa) {
@@ -80,7 +80,7 @@ public class WykonujacyInterakcje {
     }
 
     /**
-     *
+     * zwraca czy gracz spotkal wilka w tej turze
      * @return czy gracz spotkal wilka w tej turze
      */
     public boolean isCzySpotkalWilka() {
@@ -88,7 +88,7 @@ public class WykonujacyInterakcje {
     }
 
     /**
-     *
+     * zwraca czy gracz spotkal lisa w tej turze
      * @return czy gracz spotkal lisa w tej turze
      */
     public boolean isCzySpotkalLisa() {
@@ -96,7 +96,7 @@ public class WykonujacyInterakcje {
     }
 
     /**
-     *
+     * ustawia nowa wartosc pola {@link WykonujacyInterakcje#czyZostalOkradziony}
      * @param czyZostalOkradziony true jesli zostal okradziony
      */
     public void setCzyZostalOkradziony(boolean czyZostalOkradziony) {
@@ -104,7 +104,7 @@ public class WykonujacyInterakcje {
     }
 
     /**
-     *
+     * zwraca czy gracz zostal okradziony przez innego gracza
      * @return czy gracz zostal okradziony przez innego gracza
      */
     public boolean isCzyZostalOkradziony() {

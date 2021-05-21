@@ -16,7 +16,7 @@ public class Wilk implements postac.Postac {
     private boolean wykonalRuch;
 
     /**
-     *
+     * tworzy obiekt Wilk
      * @param x startowy koordynat X na planszy
      * @param y startowy koordynat Y na planszy
      * @param plansza obiekt planszy na ktorym bedzie sie poruszac
@@ -74,8 +74,8 @@ public class Wilk implements postac.Postac {
     }
 
     /**
-     *
-     * @return aktualny koordynat X
+     * zwraca aktualny koordynat X
+     * @return {@link Wilk#koordynatX}
      */
     @Override
     public int getKoordynatX() {
@@ -83,8 +83,8 @@ public class Wilk implements postac.Postac {
     }
 
     /**
-     *
-     * @return aktualny koordynat Y
+     * zwraca aktualny koordynat Y
+     * @return {@link Wilk#koordynatY}
      */
     @Override
     public int getKoordynatY() {
@@ -92,15 +92,15 @@ public class Wilk implements postac.Postac {
     }
 
     /**
-     *
-     * @return czy obiekt wykonal ruch
+     * zwraca czy obiekt wykonal ruch
+     * @return {@link Wilk#wykonalRuch}
      */
     public boolean isWykonalRuch() {
         return wykonalRuch;
     }
 
     /**
-     *
+     * ustawia nowa wartosc pola {@link Wilk#wykonalRuch}
      * @param wykonalRuch nowa wartosc pola {@link Wilk#wykonalRuch}
      */
     public void setWykonalRuch(boolean wykonalRuch) {

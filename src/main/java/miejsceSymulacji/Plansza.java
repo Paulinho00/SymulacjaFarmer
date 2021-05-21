@@ -47,6 +47,9 @@ public class Plansza {
         zapis.naglowek();
     }
 
+    /**
+     * Wykonuje wszystkie czynnosci symulacji w jednej turze
+     */
     public void WykonajTure(){
         RuchyNaPlanszy();
         wymianyGraczy();
@@ -66,19 +69,26 @@ public class Plansza {
         zajetePola++;
     }
 
+    /**
+     * zwraca referencje do obiektu znajdujacego sie na danym polu
+     * @param x koordynat X docelowego pola
+     * @param y koordynat Y docelowego pola
+     * @return referencje do obiektu znajdujacego sie na podanym polu
+     */
     public Postac getPola(int x, int y){
         return pola[x][y];
     }
+
     /**
-     *
-     * @return zwraca dlugosc(rozmiar Y) planszy
+     * zwraca dlugosc(rozmiar Y) planszy
+     * @return dlugosc(rozmiar Y) planszy
      */
     public int getRozmiarY() {
         return rozmiarY;}
 
     /**
-     *
-     * @return zwraca szerokosc(rozmiar X) planszy
+     *  zwraca szerokosc(rozmiar X) planszy
+     * @return szerokosc(rozmiar X) planszy
      */
     public int getRozmiarX() {
         return rozmiarX;}
@@ -107,7 +117,7 @@ public class Plansza {
     }
 
     /**
-     *
+     * zwraca ilosc zajetych pol
      * @return ilosc zajetych pol
      */
     public int getZajetePola() {
@@ -117,7 +127,7 @@ public class Plansza {
     /**
      * uzupelnia tablice gdy jest za malo zajetych pol
      */
-    public void uzupelnienie(){
+    private void uzupelnienie(){
         Random losowanie = new Random();
         int x;
         int y;
@@ -177,6 +187,7 @@ public class Plansza {
     /**
      * zarzadza ruchem {@link zwierzeta.Kon}, {@link zwierzeta.Krowa},
      * {@link zwierzeta.Swinia}, {@link zwierzeta.Owca}, {@link zwierzeta.Krolik},
+     * {@link zwierzeta.Wilk}, {@link zwierzeta.Lis}, {@link glownyUczestnikSymulacji.Gracz}
      * na planszy i pilnuje aby żaden nie obiekt nie wykonał podwójnego ruchu
      */
     private void RuchyNaPlanszy(){
@@ -251,7 +262,7 @@ public class Plansza {
     /**
      * resetuje pole sprawdzajace czy dany obiekt wykonal ruch w tej turze, dla każdego zwierzęcia
      */
-    public void ResetZwierzat(){
+    private void ResetZwierzat(){
         String kto;
         Krolik krolik;
         Owca owca;
@@ -326,24 +337,39 @@ public class Plansza {
         new Lis(x, y, this);
     }
 
+    /**
+     * umieszcza dana ilosc graczy na planszy, w podanych polozeniach
+     * @param kordX tablica zawierajaca koordynaty X graczy
+     * @param kordY tablica zawierajaca koordynaty Y graczy
+     */
     private void umieszczenieGraczy(int[] kordX, int[] kordY){
         gracze = new  Gracz[kordX.length];
         for(int i = 0; i < kordX.length;i++){
             gracze[i] = new Gracz(kordX[i], kordY[i],this,i+1);
-            setPola(kordX[i], kordY[i],gracze[i]);
         }
     }
 
-    public void wymianyGraczy(){
+    /**
+     * Wywoluje wymiany u wszystkich graczy na planszy
+     */
+    private void wymianyGraczy(){
         for(int i =0; i < gracze.length; i++){
             gracze[i].wymiana();
         }
     }
 
+    /**
+     * zwraca tablice zawierajaca referencje do wszystkich graczy znajdujacych sie na planszy
+     * @return tablice zawierajaca referencje do wszystkich graczy znajdujacych sie na planszy
+     */
     public Gracz[] getGracze() {
         return gracze;
     }
 
+    /**
+     * zwraca referencje do obiektu odpowiedzialnego za zapisywanie danych do pliku
+     * @return referencje do obiektu odpowiedzialnego za zapisywanie danych do pliku
+     */
     public Zapisywator getZapis() {
         return zapis;
     }

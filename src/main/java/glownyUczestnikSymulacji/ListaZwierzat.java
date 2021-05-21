@@ -19,7 +19,6 @@ public class ListaZwierzat {
      * @param swinie przekazuje startowa liczbe swin
      * @param krowy przekazuje startowa liczbe krow
      * @param konie przekazuje startowa liczbe koni
-     * @exception IllegalArgumentException gdy dane startowe sa zbyt duze
      */
     public ListaZwierzat(int kroliki, int owce, int swinie, int krowy, int konie){
         iloscKrolikow = kroliki;
@@ -30,7 +29,7 @@ public class ListaZwierzat {
     }
 
     /**
-     *
+     * zwraca ilosc krolikow na koncie
      * @return ilosc krolikow na koncie
      */
     public Integer getIloscKrolikow() {
@@ -38,7 +37,7 @@ public class ListaZwierzat {
     }
 
     /**
-     *
+     * zwraca ilosc owiec na koncie
      * @return ilosc owiec na koncie
      */
     public Integer getIloscOwiec() {
@@ -46,7 +45,7 @@ public class ListaZwierzat {
     }
 
     /**
-     *
+     * zwraca ilosc swin na koncie
      * @return ilosc swin na koncie
      */
     public Integer getIloscSwin() {
@@ -54,7 +53,7 @@ public class ListaZwierzat {
     }
 
     /**
-     *
+     * zwraca ilosc krow na koncie
      * @return ilosc krow na koncie
      */
     public Integer getIloscKrow() {
@@ -62,7 +61,7 @@ public class ListaZwierzat {
     }
 
     /**
-     *
+     * zwraca ilosc koni na koncie
      * @return ilosc koni na koncie
      */
     public Integer getIloscKoni() {
@@ -70,7 +69,7 @@ public class ListaZwierzat {
     }
 
     /**
-     *
+     * ustawia nowa ilosc krolikow na koncie
      * @param iloscKrolikow nowa liczba krolikow na koncie
      */
     protected void setIloscKrolikow(int iloscKrolikow) {
@@ -78,7 +77,7 @@ public class ListaZwierzat {
     }
 
     /**
-     *
+     * ustawia nowa ilosc owiec na koncie
      * @param iloscOwiec nowa liczba owiec na koncie
      */
     protected void setIloscOwiec(int iloscOwiec) {
@@ -86,7 +85,7 @@ public class ListaZwierzat {
     }
 
     /**
-     *
+     * ustawia nowa ilosc swin na koncie
      * @param iloscSwin nowa liczba swin na koncie
      */
     protected void setIloscSwin(int iloscSwin) {
@@ -94,7 +93,7 @@ public class ListaZwierzat {
     }
 
     /**
-     *
+     * ustawia nowa ilosc krow na koncie
      * @param iloscKrow nowa liczba krow na koncie
      */
     protected void setIloscKrow(int iloscKrow) {
@@ -102,7 +101,7 @@ public class ListaZwierzat {
     }
 
     /**
-     *
+     * ustawia nowa ilosc koni na koncie
      * @param iloscKoni nowa liczba koni na koncie
      */
     protected void setIloscKoni(int iloscKoni) {

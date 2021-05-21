@@ -11,7 +11,7 @@ public class Przeliczniki {
     private static int krowyZaKonie = 2;
 
     /**
-     *
+     * zwraca przelicznik wymiany krolikow za owce
      * @return staly przelicznik wymiany krolikow na owce
      */
     protected static int getKrolikiZaOwce() {
@@ -19,7 +19,7 @@ public class Przeliczniki {
     }
 
     /**
-     *
+     * zwraca przelicznik wymiany owiec za swinie
      * @return staly przelicznik wymiany owiec na swinie
      */
     protected static int getOwceZaSwinie() {
@@ -27,7 +27,7 @@ public class Przeliczniki {
     }
 
     /**
-     *
+     * zwraca przelicznik wymiany swin za krowy
      * @return staly przelicznik wymiany swin na krowy
      */
     protected static int getSwinieZaKrowy() {
@@ -35,7 +35,7 @@ public class Przeliczniki {
     }
 
     /**
-     *
+     * zwraca przelicznik wymiany krow za konie
      * @return staly przelicznik wymiany krow na konie
      */
     protected static int getKrowyZaKonie() {

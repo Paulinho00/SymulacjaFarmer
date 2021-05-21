@@ -12,7 +12,7 @@ public class Swinia implements postac.Postac{
     private boolean wykonalRuch;
 
     /**
-     *
+     * tworzy obiekt Swinia
      * @param x koordynat startowy X na ktorym pojawi sie obiekt na planszy
      * @param y koordynat startowy Y na ktorym pojawi sie obiekt na planszy
      * @param plansza plansza na ktorej porusza sie obiekt
@@ -65,8 +65,8 @@ public class Swinia implements postac.Postac{
     }
 
     /**
-     *
-     * @return aktualny koordynat X obiektu
+     * zwraca aktualny koordynat X obiektu
+     * @return {@link Swinia#koordynatX}
      */
     @Override
     public int getKoordynatX() {
@@ -74,8 +74,8 @@ public class Swinia implements postac.Postac{
     }
 
     /**
-     *
-     * @return aktualny koordynat Y obiektu
+     * zwraca aktualny koordynat Y obiektu
+     * @return {@link Swinia#koordynatY}
      */
     @Override
     public int getKoordynatY() {
@@ -83,15 +83,15 @@ public class Swinia implements postac.Postac{
     }
 
     /**
-     *
-     * @return czy obiekt wykonal ruch w tej turze
+     * zwraca czy obiekt wykonal ruch w tej turze
+     * @return {@link Swinia#wykonalRuch}
      */
     public boolean isWykonalRuch() {
         return wykonalRuch;
     }
 
     /**
-     *
+     * ustawia nowa wartosc pola {@link Swinia#wykonalRuch}
      * @param wykonalRuch nowa wartosc pola {@link Swinia#wykonalRuch}
      */
     public void setWykonalRuch(boolean wykonalRuch) {

@@ -13,7 +13,7 @@ public class Kon implements postac.Postac{
     private boolean wykonalRuch;
 
     /**
-     *
+     * tworzy obiekt Konia
      * @param x koordynat startowy X na ktorym pojawi sie obiekt na planszy
      * @param y koordynat startowy Y na ktorym pojawi sie obiekt na planszy
      * @param plansza plansza na ktorej porusza sie obiekt
@@ -67,8 +67,8 @@ public class Kon implements postac.Postac{
     }
 
     /**
-     *
-     * @return aktualny koordynat X obiektu
+     * zwraca aktualny koordynat X obiektu {@link Kon#koordynatX}
+     * @return {@link Kon#koordynatX}
      */
     @Override
     public int getKoordynatX() {
@@ -76,8 +76,8 @@ public class Kon implements postac.Postac{
     }
 
     /**
-     *
-     * @return aktualny koordynat Y obiektu
+     * zwraca aktualny koordynat Y obiektu
+     * @return {@link Kon#koordynatY}
      */
     @Override
     public int getKoordynatY() {
@@ -85,15 +85,15 @@ public class Kon implements postac.Postac{
     }
 
     /**
-     *
-     * @return czy obiekt wykonal ruch w tej turze
+     * zwraca czy obiekt wykonal ruch w tej turze
+     * @return {@link Kon#wykonalRuch}
      */
     public boolean isWykonalRuch() {
         return wykonalRuch;
     }
 
     /**
-     *
+     * ustawia nowa wartosc pola {@link Kon#wykonalRuch}
      * @param wykonalRuch nowa wartosc pola {@link Kon#wykonalRuch}
      */
     public void setWykonalRuch(boolean wykonalRuch) {

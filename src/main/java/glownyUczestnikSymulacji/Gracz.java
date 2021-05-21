@@ -23,7 +23,7 @@ public class Gracz implements postac.Postac {
      * @param x poczatkowy koordynat X gracza na planszy
      * @param y poczatkowy koordynat Y gracza na planszy
      * @param plansza referencja do planszy na ktorej znajduje sie gracz
-     * @exception IllegalArgumentException gdy podane koordynaty sa bledne lub startowe stany konta za duze
+     * @exception IllegalArgumentException gdy podane koordynaty sa bledne lub dane miejsce jest juz zajete
      */
     public Gracz(int x, int y, Plansza plansza, int ktory) {
         if(x < 0 ||  y < 0 || y >= plansza.getRozmiarY() || x >= plansza.getRozmiarX() || plansza.czyZajete(x,y)){
@@ -136,7 +136,7 @@ public class Gracz implements postac.Postac {
     }
 
     /**
-     *
+     * zwraca koordynat X gracza
      * @return zwraca aktualny koordynat X gracza na planszy
      */
     @Override
@@ -145,7 +145,7 @@ public class Gracz implements postac.Postac {
     }
 
     /**
-     *
+     * zwraca koordynat Y gracza
      * @return zwraca aktualny koordynat Y gracza na planszy
      */
     @Override
@@ -154,14 +154,14 @@ public class Gracz implements postac.Postac {
     }
 
     /**
-     *
+     * zwraca ilosc wykonanych ruchow przez gracza
      * @return zwraca ilosc wykonanych ruchow wykonanych do pory wywolania, od poczatku symulacji
      */
     public Integer getIloscRuchow() {
         return iloscRuchow;}
 
     /**
-     *
+     * zwraca referencje do przypisanego obiektu wykonujacego interakcje miedzy graczem a drapieznikami
      * @return zwraca referencje do obiektu wykonujacego interakcje
      */
     public WykonujacyInterakcje getHandler() {
@@ -181,37 +181,46 @@ public class Gracz implements postac.Postac {
             if(zwierze.equals("Kon")) stanKonta.setIloscKoni(doIlu);
         }
 
-        public boolean czyKoniec(){
-            int krowy = (stanKonta.getIloscKoni()*Przeliczniki.getKrowyZaKonie())+ stanKonta.getIloscKrow();
-            int swinie = (krowy*Przeliczniki.getSwinieZaKrowy())+ stanKonta.getIloscSwin();
-            int owce = (swinie*Przeliczniki.getOwceZaSwinie())+ stanKonta.getIloscOwiec();
-            int kroliki = (owce*Przeliczniki.getKrolikiZaOwce())+ stanKonta.getIloscKrolikow();
-            return kroliki >=127;
-
-        }
     /**
-     *
-     * @return zwraca referencje do obiektu stanu konta
+     * zwraca referencje do obiektu stanu konta gracza
+     * @return referencje do obiektu stanu konta
      */
     public ListaZwierzat getStanKonta() {
         return stanKonta;
     }
 
+    /**
+     * oblicza i zwraca wartosc konta gracza
+     * @return wartosc konta gracza wyrazona w krolikach
+     */
     public int wartoscKonta(){
         int krowy = (stanKonta.getIloscKoni()*Przeliczniki.getKrowyZaKonie())+ stanKonta.getIloscKrow();
         int swinie = (krowy*Przeliczniki.getSwinieZaKrowy())+ stanKonta.getIloscSwin();
         int owce = (swinie*Przeliczniki.getOwceZaSwinie())+ stanKonta.getIloscOwiec();
-        return (owce*Przeliczniki.getKrolikiZaOwce())+ stanKonta.getIloscKrolikow();
+        int kroliki = ((owce*Przeliczniki.getKrolikiZaOwce())+ stanKonta.getIloscKrolikow());
+        return kroliki;
     }
 
+    /**
+     * zwraca czy dany gracz wykonal ruch w tej turze
+     * @return czy gracz wykonal ruch w danej turze
+     */
     public boolean isWykonalRuch() {
         return wykonalRuch;
     }
 
+    /**
+     * ustawia nowa wartosc pola {@link Gracz#wykonalRuch}
+     * @param wykonalRuch nowa wartosc pola {@link Gracz#wykonalRuch}
+     */
     public void setWykonalRuch(boolean wykonalRuch) {
         this.wykonalRuch = wykonalRuch;
     }
 
+    /**
+     * zwraca numer identyfikujacy gracza
+     * @return przypisany numer gracza
+     */
     public int getKtory() {
         return ktory;
     }

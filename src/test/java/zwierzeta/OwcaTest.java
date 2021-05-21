@@ -2,18 +2,32 @@ package zwierzeta;
 
 import glownyUczestnikSymulacji.Gracz;
 import miejsceSymulacji.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class OwcaTest {
-    Kostka kostka = new Kostka(1,1,1,1,1);
-    Plansza plansza = new Plansza(7,7,kostka);
-    Gracz gracz = new Gracz(2,2,1,0,0,1,1,plansza);
-    Owca owca = new Owca(0,0,plansza);
+    Plansza plansza = null;
+    Owca owca = null;
+    @BeforeEach
+    void init(){
+        int[] kordX = new int[1];
+        kordX[0] = 5;
+        int[] kordY = new int[1];
+        kordY[0] = 5;
+        Kostka kostka = new Kostka(1,1,1,1,1);
+        plansza = new Plansza(7,7,kordX, kordY,kostka);
+        owca = new Owca(0,0,plansza);
+    }
 
     @Test
     void RuchNaWolnePole(){
+        plansza.setPola(0,1,null);
+        plansza.setPola(1,0,null);
         int stareX = owca.getKoordynatX();
         int stareY = owca.getKoordynatY();
         owca.ruch();
@@ -28,8 +42,8 @@ class OwcaTest {
 
     @Test
     void BrakRuchuNaPoleZLisemLubWilkiem(){
-        Wilk wilk = new Wilk(0,1,plansza,gracz.getHandler());
-        Lis lis = new Lis(1,0,plansza,gracz.getHandler());
+        new Wilk(0,1,plansza);
+        new Lis(1,0,plansza);
         int stareX = owca.getKoordynatX();
         int stareY = owca.getKoordynatY();
         owca.ruch();
@@ -42,7 +56,7 @@ class OwcaTest {
 
     @Test
     void BrakRuchuNaPoleZGraczLubZwierzem(){
-        plansza.przemieszczenie(2,2,0,1);
+        plansza.przemieszczenie(5,5,0,1);
         new Owca(1,0,plansza);
         int stareX = owca.getKoordynatX();
         int stareY = owca.getKoordynatY();

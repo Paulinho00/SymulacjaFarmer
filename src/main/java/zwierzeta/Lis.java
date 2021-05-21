@@ -15,7 +15,7 @@ public class Lis implements postac.Postac{
     private boolean wykonalRuch;
 
     /**
-     *
+     * tworzy obiekt Lis
      * @param x startowy koordynat X na planszy
      * @param y startowy koordynat Y na planszy
      * @param plansza plansza po ktorej bedzie sie poruszal
@@ -120,8 +120,8 @@ public class Lis implements postac.Postac{
     }
 
     /**
-     *
-     * @return obecny koordynat X na planszy
+     * zwraca aktualny koordynat X
+     * @return {@link Lis#koordynatX}
      */
     @Override
     public int getKoordynatX() {
@@ -129,8 +129,8 @@ public class Lis implements postac.Postac{
     }
 
     /**
-     *
-     * @return obecny koordynat Y na planszy
+     * zwraca obecny koordynat Y na planszy
+     * @return {@link Lis#koordynatY}
      */
     @Override
     public int getKoordynatY() {
@@ -138,15 +138,15 @@ public class Lis implements postac.Postac{
     }
 
     /**
-     *
-     * @return czy obiekt wykonal ruch
+     * zwraca czy obiekt wykonal ruch
+     * @return {@link Lis#wykonalRuch}
      */
     public boolean isWykonalRuch() {
         return wykonalRuch;
     }
 
     /**
-     *
+     * ustawia nowa wartosc pola {@link Lis#wykonalRuch}
      * @param wykonalRuch nowa wartosc pola {@link Lis#wykonalRuch}
      */
     public void setWykonalRuch(boolean wykonalRuch) {

@@ -6,6 +6,9 @@ import miejsceSymulacji.Plansza;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * tworzy okno, z graficznym przedstawieniem polozenia obiektow na planszy
+ */
 public class PlanszaGUI extends JPanel {
     private int kwadratX = 50;
     private int kwadratY = 50;
@@ -14,7 +17,10 @@ public class PlanszaGUI extends JPanel {
     private final Plansza plansza;
     private JLabel[][] pola;
 
-
+    /**
+     * tworzy nowe okno z podgladem przekazanej tablicy
+     * @param plansza plansza ktora bedzie graficznie przedstawiana w oknie
+     */
     public PlanszaGUI(Plansza plansza) {
         this.plansza = plansza;
         setLayout(new GridLayout(plansza.getRozmiarX(), plansza.getRozmiarY() ));
@@ -31,7 +37,11 @@ public class PlanszaGUI extends JPanel {
             }
         }
         }
-        public void aktualizacjaGUI(){
+
+    /**
+     * aktualizuje polozenie wszystkich obiektow na podgladzie planszy
+     */
+    public void aktualizacjaGUI(){
          JLabel temp;
         for(int i = 0; i < plansza.getRozmiarX(); i++){
             for(int j = 0; j < plansza.getRozmiarY(); j++){
