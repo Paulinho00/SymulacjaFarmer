@@ -21,7 +21,7 @@ public class Plansza {
     private Zapisywator zapis;
 
     /**
-     *
+     * tworzy obiekt Plansza
      * @param y dlugosc planszy
      * @param x szerokosc planszy
      * @param kostka obiekt kostki uzywany do wylosowania rodzaju zwierzecia przy losowaniu
@@ -73,7 +73,7 @@ public class Plansza {
      * zwraca referencje do obiektu znajdujacego sie na danym polu
      * @param x koordynat X docelowego pola
      * @param y koordynat Y docelowego pola
-     * @return referencje do obiektu znajdujacego sie na podanym polu
+     * @return {@link Plansza#pola}
      */
     public Postac getPola(int x, int y){
         return pola[x][y];
@@ -81,14 +81,14 @@ public class Plansza {
 
     /**
      * zwraca dlugosc(rozmiar Y) planszy
-     * @return dlugosc(rozmiar Y) planszy
+     * @return {@link Plansza#rozmiarY}
      */
     public int getRozmiarY() {
         return rozmiarY;}
 
     /**
      *  zwraca szerokosc(rozmiar X) planszy
-     * @return szerokosc(rozmiar X) planszy
+     * @return {@link Plansza#rozmiarX}
      */
     public int getRozmiarX() {
         return rozmiarX;}
@@ -118,7 +118,7 @@ public class Plansza {
 
     /**
      * zwraca ilosc zajetych pol
-     * @return ilosc zajetych pol
+     * @return {@link Plansza#zajetePola}
      */
     public int getZajetePola() {
         return zajetePola;
@@ -360,7 +360,7 @@ public class Plansza {
 
     /**
      * zwraca tablice zawierajaca referencje do wszystkich graczy znajdujacych sie na planszy
-     * @return tablice zawierajaca referencje do wszystkich graczy znajdujacych sie na planszy
+     * @return {@link Plansza#gracze}
      */
     public Gracz[] getGracze() {
         return gracze;
@@ -368,7 +368,7 @@ public class Plansza {
 
     /**
      * zwraca referencje do obiektu odpowiedzialnego za zapisywanie danych do pliku
-     * @return referencje do obiektu odpowiedzialnego za zapisywanie danych do pliku
+     * @return {@link Plansza#zapis}
      */
     public Zapisywator getZapis() {
         return zapis;

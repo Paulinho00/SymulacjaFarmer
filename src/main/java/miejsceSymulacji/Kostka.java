@@ -14,7 +14,7 @@ public class Kostka {
     private final int scianyKonie;
 
     /**
-     *
+     * tworzy obiekt Kostka
      * @param kroliki liczba scian z krolikami
      * @param owce liczba scian z owcami
      * @param swinie liczba scian z swiniami

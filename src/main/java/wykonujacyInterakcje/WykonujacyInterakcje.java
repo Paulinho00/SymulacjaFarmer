@@ -81,7 +81,7 @@ public class WykonujacyInterakcje {
 
     /**
      * zwraca czy gracz spotkal wilka w tej turze
-     * @return czy gracz spotkal wilka w tej turze
+     * @return {@link WykonujacyInterakcje#czySpotkalWilka}
      */
     public boolean isCzySpotkalWilka() {
         return czySpotkalWilka;
@@ -89,7 +89,7 @@ public class WykonujacyInterakcje {
 
     /**
      * zwraca czy gracz spotkal lisa w tej turze
-     * @return czy gracz spotkal lisa w tej turze
+     * @return {@link WykonujacyInterakcje#czySpotkalLisa}
      */
     public boolean isCzySpotkalLisa() {
         return czySpotkalLisa;
@@ -105,7 +105,7 @@ public class WykonujacyInterakcje {
 
     /**
      * zwraca czy gracz zostal okradziony przez innego gracza
-     * @return czy gracz zostal okradziony przez innego gracza
+     * @return {@link WykonujacyInterakcje#czyZostalOkradziony}
      */
     public boolean isCzyZostalOkradziony() {
         return czyZostalOkradziony;

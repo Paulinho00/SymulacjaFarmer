@@ -13,7 +13,7 @@ public class ListaZwierzat {
     private int iloscKoni;
 
     /**
-     *
+     * tworzy obiekt ListaZwierzat
      * @param kroliki przekazuje startowa liczbe krolikow na koncie
      * @param owce przekazuje startowa liczbe
      * @param swinie przekazuje startowa liczbe swin
@@ -30,7 +30,7 @@ public class ListaZwierzat {
 
     /**
      * zwraca ilosc krolikow na koncie
-     * @return ilosc krolikow na koncie
+     * @return {@link ListaZwierzat#getIloscKrolikow()}
      */
     public Integer getIloscKrolikow() {
         return iloscKrolikow;
@@ -38,7 +38,7 @@ public class ListaZwierzat {
 
     /**
      * zwraca ilosc owiec na koncie
-     * @return ilosc owiec na koncie
+     * @return {@link ListaZwierzat#getIloscOwiec()}
      */
     public Integer getIloscOwiec() {
         return iloscOwiec;
@@ -46,7 +46,7 @@ public class ListaZwierzat {
 
     /**
      * zwraca ilosc swin na koncie
-     * @return ilosc swin na koncie
+     * @return {@link ListaZwierzat#getIloscSwin()}
      */
     public Integer getIloscSwin() {
         return iloscSwin;
@@ -54,7 +54,7 @@ public class ListaZwierzat {
 
     /**
      * zwraca ilosc krow na koncie
-     * @return ilosc krow na koncie
+     * @return {@link ListaZwierzat#getIloscKrow()}
      */
     public Integer getIloscKrow() {
         return iloscKrow;
@@ -62,7 +62,7 @@ public class ListaZwierzat {
 
     /**
      * zwraca ilosc koni na koncie
-     * @return ilosc koni na koncie
+     * @return {@link ListaZwierzat#getIloscKoni()}
      */
     public Integer getIloscKoni() {
         return iloscKoni;
