@@ -54,9 +54,9 @@ public class PlanszaGUI extends JPanel {
                     String kto = plansza.ktoJest(i,j);
                     if(kto.equals("Gracz")){
                         Gracz gracz = (Gracz) plansza.getPola(i,j);
-                        temp.setBackground(Color.BLACK);
+                        temp.setBackground(new Color(255, 0, 0));
                         temp.setText("G"+gracz.getKtory());
-                        temp.setForeground(Color.WHITE);
+                        temp.setForeground(Color.BLACK);
                     }
                     if (kto.equals("Lis")){
                         temp.setBackground(new Color(255,101,0));
@@ -64,17 +64,17 @@ public class PlanszaGUI extends JPanel {
                         temp.setForeground(Color.BLACK);
                     }
                     if(kto.equals("Wilk")){
-                        temp.setBackground(Color.BLUE);
+                        temp.setBackground(new Color(0, 48, 255));
                         temp.setText("W");
                         temp.setForeground(Color.BLACK);
                     }
                     if(kto.equals("Krolik")){
-                        temp.setBackground(Color.DARK_GRAY);
+                        temp.setBackground(new Color(99, 96, 96));
                         temp.setText("Krl");
                         temp.setForeground(Color.WHITE);
                     }
                     if(kto.equals("Owca")){
-                        temp.setBackground(Color.YELLOW);
+                        temp.setBackground(new Color(255, 244, 31));
                         temp.setText("O");
                         temp.setForeground(Color.BLACK);
                     }
@@ -84,14 +84,14 @@ public class PlanszaGUI extends JPanel {
                         temp.setForeground(Color.BLACK);
                     }
                     if(kto.equals("Krowa")){
-                        temp.setBackground(Color.MAGENTA);
+                        temp.setBackground(new Color(145, 255, 20));
                         temp.setText("Krw");
                         temp.setForeground(Color.BLACK);
                     }
                     if(kto.equals("Kon")){
-                        temp.setBackground(Color.GREEN);
+                        temp.setBackground(new Color(21, 21, 21, 255));
                         temp.setText("K");
-                        temp.setForeground(Color.BLACK);
+                        temp.setForeground(Color.WHITE);
                     }
                 }
             }

@@ -240,8 +240,8 @@ public class MojeOkno extends JFrame implements ActionListener {
      */
     private void tworzenieRamkiZPlansza(){
         planszaRamka = new JFrame("Plansza");
-        planszaRamka.setSize(4000,4000);
-        planszaRamka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        planszaRamka.setSize(3000,3000);
+        planszaRamka.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         planszaRamka.setVisible(true);
     }
 

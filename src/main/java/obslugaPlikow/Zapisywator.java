@@ -75,6 +75,7 @@ public class Zapisywator {
                 plik.append("Czy zostal okradziony?");
                 plik.append(";");
             }
+            plik.append("\n");
 
         }
         catch (IOException e) {
