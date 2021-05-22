@@ -1,7 +1,7 @@
 package zwierzeta;
+
 import glownyUczestnikSymulacji.Gracz;
 import miejsceSymulacji.Plansza;
-import wykonujacyInterakcje.WykonujacyInterakcje;
 
 import java.util.Random;
 

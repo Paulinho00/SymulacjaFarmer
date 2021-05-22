@@ -1,8 +1,6 @@
 package zwierzeta;
 
-import glownyUczestnikSymulacji.Gracz;
 import miejsceSymulacji.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
