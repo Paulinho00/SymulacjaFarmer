@@ -87,6 +87,7 @@ public class Krowa implements postac.Postac{
      * zwraca czy obiekt wykonal ruch w tej turze
      * @return {@link Krowa#wykonalRuch}
      */
+    @Override
     public boolean isWykonalRuch() {
         return wykonalRuch;
     }
@@ -95,6 +96,7 @@ public class Krowa implements postac.Postac{
      * ustawia nowa wartosc pola {@link Krowa#wykonalRuch}
      * @param wykonalRuch nowa wartosc pola {@link Krowa#wykonalRuch}
      */
+    @Override
     public void setWykonalRuch(boolean wykonalRuch) {
         this.wykonalRuch = wykonalRuch;
     }

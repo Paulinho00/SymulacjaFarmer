@@ -142,6 +142,7 @@ public class Lis implements postac.Postac{
      * zwraca czy obiekt wykonal ruch
      * @return {@link Lis#wykonalRuch}
      */
+    @Override
     public boolean isWykonalRuch() {
         return wykonalRuch;
     }
@@ -150,6 +151,7 @@ public class Lis implements postac.Postac{
      * ustawia nowa wartosc pola {@link Lis#wykonalRuch}
      * @param wykonalRuch nowa wartosc pola {@link Lis#wykonalRuch}
      */
+    @Override
     public void setWykonalRuch(boolean wykonalRuch) {
         this.wykonalRuch = wykonalRuch;
     }

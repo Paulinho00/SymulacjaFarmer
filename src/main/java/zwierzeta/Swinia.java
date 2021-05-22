@@ -86,6 +86,7 @@ public class Swinia implements postac.Postac{
      * zwraca czy obiekt wykonal ruch w tej turze
      * @return {@link Swinia#wykonalRuch}
      */
+    @Override
     public boolean isWykonalRuch() {
         return wykonalRuch;
     }
@@ -94,6 +95,7 @@ public class Swinia implements postac.Postac{
      * ustawia nowa wartosc pola {@link Swinia#wykonalRuch}
      * @param wykonalRuch nowa wartosc pola {@link Swinia#wykonalRuch}
      */
+    @Override
     public void setWykonalRuch(boolean wykonalRuch) {
         this.wykonalRuch = wykonalRuch;
     }

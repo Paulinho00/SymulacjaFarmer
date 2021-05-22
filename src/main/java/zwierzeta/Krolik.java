@@ -87,6 +87,7 @@ public class Krolik implements postac.Postac {
      * czy obiekt wykonal ruch w tej turze
      * @return {@link Krolik#wykonalRuch}
      */
+    @Override
     public boolean isWykonalRuch() {
         return wykonalRuch;
     }
@@ -95,6 +96,7 @@ public class Krolik implements postac.Postac {
      * ustawia nowa wartosc pola {@link Krolik#wykonalRuch}
      * @param wykonalRuch nowa wartosc pola {@link Krolik#wykonalRuch}
      */
+    @Override
     public void setWykonalRuch(boolean wykonalRuch) {
         this.wykonalRuch = wykonalRuch;
     }

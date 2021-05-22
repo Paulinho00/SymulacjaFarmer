@@ -95,6 +95,7 @@ public class Wilk implements postac.Postac {
      * zwraca czy obiekt wykonal ruch
      * @return {@link Wilk#wykonalRuch}
      */
+    @Override
     public boolean isWykonalRuch() {
         return wykonalRuch;
     }
@@ -103,6 +104,7 @@ public class Wilk implements postac.Postac {
      * ustawia nowa wartosc pola {@link Wilk#wykonalRuch}
      * @param wykonalRuch nowa wartosc pola {@link Wilk#wykonalRuch}
      */
+    @Override
     public void setWykonalRuch(boolean wykonalRuch) {
         this.wykonalRuch = wykonalRuch;
     }
