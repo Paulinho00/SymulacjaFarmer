@@ -152,7 +152,7 @@ public class MojeOkno extends JFrame implements ActionListener {
                 plansza.WykonajTure();
                 planszaGUI.aktualizacjaGUI();
                 i++;
-                if(i == 50)
+                if(i >= 50)
                 {
                     plansza.getZapis().zamnkniecie();
                     JOptionPane.showMessageDialog(null,"Symulacja zakonczona sukcesem. Wygral gracz: " + ktoWygral(plansza.getGracze())+".");
@@ -230,7 +230,7 @@ public class MojeOkno extends JFrame implements ActionListener {
           if(gracz[i].wartoscKonta() >= max) max = gracz[i].wartoscKonta();
       }
       for(int i=0; i < gracz.length; i++ ) {
-          if(max == gracz[i].wartoscKonta()) kto = kto + i + " ";
+          if(max == gracz[i].wartoscKonta()) kto = kto + gracz[i].getKtory() + " ";
       }
       return kto;
     }
@@ -241,7 +241,7 @@ public class MojeOkno extends JFrame implements ActionListener {
     private void tworzenieRamkiZPlansza(){
         planszaRamka = new JFrame("Plansza");
         planszaRamka.setSize(3000,3000);
-        planszaRamka.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        planszaRamka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         planszaRamka.setVisible(true);
     }
 
