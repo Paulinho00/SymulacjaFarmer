@@ -120,7 +120,7 @@ public class Plansza {
      * zwraca ilosc zajetych pol
      * @return {@link Plansza#zajetePola}
      */
-    private int getZajetePola() {
+    public int getZajetePola() {
         return zajetePola;
     }
 
