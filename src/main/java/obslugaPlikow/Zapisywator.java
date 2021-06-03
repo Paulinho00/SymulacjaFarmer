@@ -31,7 +31,7 @@ public class Zapisywator {
 
     /**
      * zapisuje stany konta, ilosc ruchow oraz informacje czy: spotkal Wilka, Lisa lub zostal okradziony po wykonaniu tury, do pliku, dla kazdego gracza
-     * @param gracz
+     * @param gracz gracz ktorego dane sa zapisywane
      */
     public void KolejnaTura(Gracz[] gracz){
             tury++;

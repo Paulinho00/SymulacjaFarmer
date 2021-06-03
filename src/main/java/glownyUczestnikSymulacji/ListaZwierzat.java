@@ -30,7 +30,7 @@ public class ListaZwierzat {
 
     /**
      * zwraca ilosc krolikow na koncie
-     * @return {@link ListaZwierzat#getIloscKrolikow()}
+     * @return {@link ListaZwierzat#iloscKrolikow}
      */
     public Integer getIloscKrolikow() {
         return iloscKrolikow;
@@ -38,7 +38,7 @@ public class ListaZwierzat {
 
     /**
      * zwraca ilosc owiec na koncie
-     * @return {@link ListaZwierzat#getIloscOwiec()}
+     * @return {@link ListaZwierzat#iloscOwiec}
      */
     public Integer getIloscOwiec() {
         return iloscOwiec;
@@ -46,7 +46,7 @@ public class ListaZwierzat {
 
     /**
      * zwraca ilosc swin na koncie
-     * @return {@link ListaZwierzat#getIloscSwin()}
+     * @return {@link ListaZwierzat#iloscSwin}
      */
     public Integer getIloscSwin() {
         return iloscSwin;
@@ -54,7 +54,7 @@ public class ListaZwierzat {
 
     /**
      * zwraca ilosc krow na koncie
-     * @return {@link ListaZwierzat#getIloscKrow()}
+     * @return {@link ListaZwierzat#iloscKrow}
      */
     public Integer getIloscKrow() {
         return iloscKrow;
@@ -62,7 +62,7 @@ public class ListaZwierzat {
 
     /**
      * zwraca ilosc koni na koncie
-     * @return {@link ListaZwierzat#getIloscKoni()}
+     * @return {@link ListaZwierzat#iloscKoni}
      */
     public Integer getIloscKoni() {
         return iloscKoni;
